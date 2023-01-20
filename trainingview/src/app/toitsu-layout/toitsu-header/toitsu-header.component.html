@@ -1,0 +1,51 @@
+<div class="layout-topbar">
+  
+  <a class="logo" routerLink="">
+    <img src="assets/layout/images/logo.png" alt="app-logo"/>
+  </a>
+  
+  <a id="menu-button" href="#" (click)="app.onMenuButtonClick($event)" aria-label="Toggle Menu">
+    <i class="fa fa-align-left"></i>
+  </a>
+  
+  <span class="item-container">
+    
+    <span class="topbar-language">
+      <a (click)="languageOverlayPanel.toggle($event)">
+        <img *ngIf="currentLanguage === 'en'" src="assets/layout/images/flags/en.png" alt="app-flag-en"/>
+        <img *ngIf="currentLanguage === 'el'" src="assets/layout/images/flags/el.png" alt="app-flag-el"/>
+      </a>
+    </span>
+    
+  </span>
+  
+  <p-overlayPanel #languageOverlayPanel styleClass="language-overlaypanel">
+    <div *ngIf="currentLanguage !== 'en'">
+      <a (click)="languageOverlayPanel.hide(); changeLanguage('en')">
+        <img src="assets/layout/images/flags/en.png" alt="app-flag-en"/>
+        {{'global.english' | translate}}
+      </a>
+    </div>
+    <div *ngIf="currentLanguage !== 'el'">
+      <a (click)="languageOverlayPanel.hide(); changeLanguage('el')">
+        <img src="assets/layout/images/flags/el.png" alt="app-flag-el"/>
+        {{'global.greek' | translate}}
+      </a>
+    </div>
+  </p-overlayPanel>
+  <p-overlayPanel #languageOverlayPanel styleClass="language-overlaypanel">
+    <div *ngIf="currentLanguage !== 'en'">
+      <a (click)="languageOverlayPanel.hide(); changeLanguage('en')">
+        <img src="assets/layout/images/flags/en.png" alt="app-flag-en"/>
+        {{'global.english' | translate}}
+      </a>
+    </div>
+    <div *ngIf="currentLanguage !== 'el'">
+      <a (click)="languageOverlayPanel.hide(); changeLanguage('el')">
+        <img src="assets/layout/images/flags/el.png" alt="app-flag-el"/>
+        {{'global.greek' | translate}}
+      </a>
+    </div>
+  </p-overlayPanel>
+  
+</div>

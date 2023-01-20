@@ -1,0 +1,57 @@
+
+
+<p-dialog header="{{selectedProduct ? 'Edit Product' : 'Add Product'}}" [(visible)]="displayAddModal"
+          [modal]="true" [style]="{width: '50vw'}"
+          [draggable]="false" [resizable]="false" (onHide)="closeModal()">
+
+  <form *ngIf="productForm" [formGroup]="productForm" class="product-form">
+    <div class="field">
+      <label class="block" for="title">Title</label>
+      <input class="field col-12 md:col-4" type="text" pInputText id="title" formControlName="title"/>
+      <small class="p-error block" *ngIf="productForm.controls['title'].invalid &&
+           productForm.controls['title'].dirty">Field is required</small>
+    </div>
+
+    <div class="field">
+      <label class="block" for="image">Image</label>
+      <textarea class="field col-12 md:col-4" pInputTextarea id="image" formControlName="image"></textarea>
+      <small class="p-error block" *ngIf="productForm.controls['image'].invalid &&
+           productForm.controls['image'].dirty">Field is required</small>
+    </div>
+    <div class="field">
+      <label class="block" for="pcategory">Category</label>
+      <textarea class="field col-12 md:col-4" pInputTextarea id="pcategory" formControlName="pcategory"></textarea>
+      <small id="category-help" class="p-error block" *ngIf="productForm.controls['pcategory'].invalid &&
+           productForm.controls['pcategory'].dirty">Field is required</small>
+    </div>
+    <div class="field">
+      <label class="block" for="price">Price</label>
+      <p-inputNumber  [showButtons]="true" id="price"  buttonLayout="horizontal" inputId="horizontal"
+                      spinnerMode="horizontal" [step]="0.25"
+                      decrementButtonClass="p-button-danger" incrementButtonClass="p-button-success"
+                      incrementButtonIcon="pi pi-plus" decrementButtonIcon="pi pi-minus" mode="currency"
+                      currency="EUR" formControlName="price">
+      </p-inputNumber>
+      <small class="p-error block" *ngIf="productForm.controls['price'].invalid &&
+           productForm.controls['price'].dirty">Field is required</small>
+    </div>
+  </form>
+
+      <ng-template pTemplate="footer">
+        <div class="ui-helper-clearfix">
+          <button class="p-button-danger" type="button" label="Cancel" (click)="closeModal()"
+                  pButton icon="fa fa-undo" iconPos="left" style="float:right"></button>
+        </div>
+        <div class="ui-helper-clearfix" *ngIf="modalType==='Add'; else edit">
+          <button type="button" label="Add" [disabled]="productForm.invalid" (click)="addProduct()"
+                  pButton icon="fa fa-plus" iconPos="left" style="float:right"></button>
+        </div>
+       <ng-template #edit>
+         <div class="ui-helper-clearfix">
+           <button type="button" label="Edit" [disabled]="productForm.invalid" (click)="onUpdateProduct()"
+                   pButton icon="fa fa-plus" iconPos="left" style="float:right"></button>
+         </div>
+       </ng-template>
+      </ng-template>
+</p-dialog>
+

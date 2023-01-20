@@ -1,0 +1,29 @@
+<div class="grid">
+  <div class="col-12 xl:col-6 p-fluid">
+    <p-panel header="{{'myUser.test.someData' | translate}}">
+      
+      <div class="grid align-items-center">
+        <label class="col-12 sm:col-4">{{'myUser.lastName' | translate}}</label>
+        <div class="col-12 sm:col-8">
+          <input type="text" pInputText value="{{testUser.lastName}}" readonly>
+        </div>
+      </div>
+      
+      <div class="grid align-items-center">
+        <label class="col-12 sm:col-4">{{'myUser.firstName' | translate}}</label>
+        <div class="col-12 sm:col-8">
+          <input type="text" pInputText value="{{testUser.firstName}}" readonly>
+        </div>
+      </div>
+    </p-panel>
+  </div>
+</div>
+
+<!--<div class="container">-->
+<!--  <div style="text-align: left ">-->
+<!--      <div class="fc-button-group" >-->
+<!--        <button (click)="user()" pButton type="button" label="show All Users" class="p-button-success" ></button>-->
+<!--        <button pButton type="button" label="Add user" class="p-button-plain" (click)="addUser()"></button>-->
+<!--      </div>-->
+<!--  </div>-->
+<!--</div>-->

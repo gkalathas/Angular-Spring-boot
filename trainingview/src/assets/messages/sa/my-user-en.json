@@ -1,0 +1,25 @@
+{
+  "myUser.lastName": "Last Name",
+  "myUser.firstName": "First Name",
+  "myUser.test.someData": "Data",
+
+
+  "gp.campaigns": "Campaigns",
+  "gp.addCampaign": "New Campaign",
+  "showAll": "Campaigns",
+  "campaigns": "Campaigns",
+  "There are": "There are",
+  "Add": "Add campaign",
+  "addCampaign": "Add Campaign",
+  "home": "Home page",
+  "campaign.name": "Campaign Name",
+  "campaign.ID": "Campaign Id",
+  "campaignTypeDescription": "Campaign Description",
+  "campaignTypeKind": "Campaign Type",
+  "campaign.cost": "Cost",
+  "startDate": "Start Date",
+  "endDate": "End Date",
+  "List.of.Campaigns": "All Campaigns",
+  "All Campaigns": "All Campaigns",
+  "Home": "Home Page"
+}

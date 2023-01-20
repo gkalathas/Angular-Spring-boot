@@ -1,0 +1,42 @@
+
+
+<p-table [value]="campaigns"selectionMode="single" [(selection)]="campaign1" dataKey="id"
+         [paginator]="true" [rows]="10" [showCurrentPageReport]="true"
+   currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
+         responsiveLayout="scroll" [rowsPerPageOptions]="[10, 20, 30,40,50]">
+  <ng-template pTemplate="caption">
+    {{'List.of.Campaigns' | translate}}
+  </ng-template>
+  <ng-template pTemplate="header">
+    <tr>
+      <th pSortableColumn="id">{{'campaign.ID' | translate}}<p-sortIcon field="id"></p-sortIcon></th>
+      <th pSortableColumn="name">{{'campaign.name' | translate}}<p-sortIcon field="name"></p-sortIcon></th>
+      <th pSortableColumn="campaignTypeDescription">{{'campaignTypeDescription' | translate}}<p-sortIcon
+        field="campaignTypeDescription"></p-sortIcon></th>
+      <th pSortableColumn="campaignTypeKind">{{'campaignTypeKind' | translate}}<p-sortIcon field="campaignTypeKind"></p-sortIcon></th>
+      <th pSortableColumn="cost">{{'campaign.cost' | translate}}<p-sortIcon field="cost"></p-sortIcon></th>
+      <th pSortableColumn="startDate">{{'startDate' | translate}}<p-sortIcon field="startDate"></p-sortIcon></th>
+      <th pSortableColumn="endDate">{{'endDate' | translate}}<p-sortIcon field="endDate"></p-sortIcon></th>
+    </tr>
+  </ng-template>
+  <ng-template pTemplate="body" let-row="rowData" let-campaign >
+    <tr [pSelectableRow]="campaign">
+      <td>{{campaign.id}}</td>
+      <td>{{campaign.name | translate}}</td>
+      <td>{{campaign.campaignTypeDescription}}</td>
+      <td>{{campaign.campaignTypeKind}}</td>
+      <td>{{campaign.cost | currency: 'EUR': true}}</td>
+      <td>{{campaign.startDate | date: 'medium'}}</td>
+      <td>{{campaign.endDate | date: 'medium'}}</td>
+        <button type="button" pButton icon="fa fa-edit" (click)="selectedEmployee()" style="margin: 10px"></button>
+        <button type="button" pButton icon="fa fa-trash" (click)="deleteCampaign(campaign.id)" class="p-button-danger" style="margin: 10px"></button>
+    </tr>
+  </ng-template>
+  <ng-template pTemplate="summary">
+    {{'There are' | translate}} {{campaigns.length}} {{'campaigns' | translate}}
+  </ng-template>
+</p-table>
+<br>
+<div class="ui-helper-clearfix">
+  <button type="button" pButton icon="fa fa-plus" iconPos="left" label="{{'Add' | translate}}" (click)="addCampaign()" style="float:left"></button>
+</div>

@@ -1,0 +1,48 @@
+
+
+<p-header>
+  <div class="container">
+    <div style="text-align: left ">
+      <div class="fc-button-group" >
+        <button  pButton type="button" label="{{'Home' | translate}}" (click)="homePage()" class="p-button-success" style="margin: 5px"></button>
+        <button pButton type="button" label="{{'All Campaigns' | translate}}" (click)="showAll()" class="p-button-plain" style="margin: 5px"></button>
+      </div>
+    </div>
+  </div>
+</p-header>
+<div class="custom">
+  <p-card header="New Campaign" style="width: 700px">
+      <span class="p-float-label" style="margin: 20px">
+        <input type="text" pInputText [(ngModel)]="campaignId" id="campaignId">
+        <label for="campaignId">{{'campaign.ID' | translate}}</label>
+      </span>
+      <span class="p-float-label" style="margin: 20px">
+        <input type="text" pInputText [(ngModel)]="campaignName" id="campaignName">
+        <label for="campaignName">{{'campaign.name' | translate}}</label>
+      </span>
+
+      <span class="p-float-label" style="margin: 20px">
+        <input type="text" pInputText [(ngModel)]="campaignType" id="campaignType" >
+        <label for="campaignType">{{'campaignTypeKind' | translate}}</label>
+      </span>
+      <span class="p-float-label" style="margin: 20px">
+        <input type="text" pInputText [(ngModel)]="campaignCost" id="campaignCost">
+        <label for="campaignCost">{{'campaign.cost' | translate}}</label>
+      </span>
+      <span class="p-float-label" style="margin: 20px">
+        <textarea id="campaignDesc" rows="5" cols="30" [(ngModel)]="campaignDesc"  pInputTextarea autoResize="autoResize"></textarea>
+        <label for="campaignDesc">{{'campaignTypeDescription' | translate}}</label>
+      </span>
+      <p-calendar class="flex justify-content-between" [(ngModel)]="campaignStartDate" style="margin: 10px"
+                  [showIcon]="true" inputId="icon"></p-calendar>
+
+      <ng-template pTemplate="footer">
+        <button pButton pRipple type="button" label="Save" class="p-button-success" (click)="onAddCampaign()" style="margin: 5px"></button>
+        <button pButton pRipple type="button" label="Cancel" class="p-button-danger" style="margin: 5px"></button>
+      </ng-template>
+  </p-card>
+</div>
+
+
+
+

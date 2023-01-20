@@ -1,0 +1,38 @@
+
+
+
+<div class="col-md-6 0ffset-md-3">
+  <h3>Add User</h3>
+  <form (ngSubmit)="onSubmit()">
+
+    <div class="form-group">
+      <div class="field">
+        <label for="firstName" class="block">First Name</label>
+        <input id="firstName" type="username" aria-describedby="firstName-help" pInputText [(ngModel)]="user.firstName" />
+        <small id="firstName-help" class="block">Please Enter your First name.</small>
+      </div>
+    </div>
+    <div class="form-group">
+      <div class="field">
+        <label for="lastName" class="block">Last Name</label>
+        <input id="lastName" type="username" aria-describedby="lastName-help" pInputText [(ngModel)]="user.lastName" />
+        <small id="lastName-help" class="block">Please enter your Last Name.</small>
+      </div>
+    </div>
+    <div class="form-group">
+      <div class="field">
+        <label for="email" class="block">Username</label>
+        <input id="email" type="username" aria-describedby="email-help" pInputText [(ngModel)]="user.email" />
+        <small id="email-help" class="block">Please enter your email address.</small>
+      </div>
+    </div>
+    <div class="form-group">
+      <div class="field">
+        <label for="age" class="block">Age</label>
+        <input id="age" type="username" aria-describedby="age-help" pInputText [(ngModel)]="user.age" />
+        <small id="age-help" class="block">Please enter your age.</small>
+      </div>
+    </div>
+  </form>
+</div>
+
