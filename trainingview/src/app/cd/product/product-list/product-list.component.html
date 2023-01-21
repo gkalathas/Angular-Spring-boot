@@ -1,12 +1,5 @@
 
 
-
-<!--  <ng-template>-->
-<!--    <p-button type="button" icon="pi pi-chevron-left" (click)="prev()" [disabled]="isFirstPage()" styleClass="p-button-text"></p-button>-->
-<!--    <p-button type="button" icon="pi pi-refresh" (click)="reset()" styleClass="p-button-text"></p-button>-->
-<!--    <p-button type="button" icon="pi pi-chevron-right" (click)="next()" [disabled]="isLastPage()" styleClass="p-button-text"></p-button>-->
-<!--  </ng-template>-->
-
 <div class="flex justify-content-between">
   <h2>Products</h2>
   <div class="ui-helper-clearfix">
@@ -14,8 +7,8 @@
            (click)="shoAddModal()" style="float:left"></button>
   </div>
 </div>
-<p-table [value]="products" [paginator]="true" [rows]="10" [showCurrentPageReport]="true"
-         totalRecords="100" (onPageChange)="paginate($event)"
+<p-table [value]="products" [lazy]="true" [paginator]="true" [rows]="itemsPerPage" [showCurrentPageReport]="true"
+         totalRecords="100" (onLazyLoad)="loadProducts($event)"
          currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
          [rowsPerPageOptions]="[2,5,10,15,20]">
   <ng-template pTemplate="header">

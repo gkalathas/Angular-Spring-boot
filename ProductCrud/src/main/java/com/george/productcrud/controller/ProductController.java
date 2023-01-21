@@ -3,6 +3,7 @@ package com.george.productcrud.controller;
 import com.george.productcrud.model.Product;
 import com.george.productcrud.repository.ProductRepository;
 import com.george.productcrud.service.ProductService;
+import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -26,9 +27,9 @@ public class ProductController {
 
 
     @GetMapping("/getAll")
-    public ResponseEntity<List<Product>> getAllProducts(@RequestParam(name = "page", defaultValue = "0") Integer pageNo,
-                                                        @RequestParam(name = "size", defaultValue = "10") Integer pageSize) {
-        return new ResponseEntity<>(productService.getAll(pageNo, pageSize), HttpStatus.OK);
+    public Page<Product> getAllProducts(@RequestParam(name = "page", defaultValue = "0") Integer page,
+                                        @RequestParam(name = "size", defaultValue = "10") Integer size) {
+        return productService.getAll(page, size);
     }
 
 

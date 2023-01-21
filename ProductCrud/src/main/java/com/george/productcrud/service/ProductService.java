@@ -6,11 +6,8 @@ import com.george.productcrud.model.Product;
 import com.george.productcrud.repository.ProductRepository;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
-
-import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -27,17 +24,20 @@ public class ProductService {
     }
 
 
-    public List<Product> getAll(Integer pageNo, Integer pageSize) {
-
-        Pageable paging = PageRequest.of(pageNo, pageSize);
-        Page<Product> pageResult = productRepository.findAll(paging);
-
-        if(pageResult.hasContent()) {
-            return pageResult.getContent();
-        }else {
-            return new ArrayList<Product>();
-        }
+    public Page<Product> getAll(Integer page, Integer size) {
+        return productRepository.findAll(PageRequest.of(page, size));
     }
+//    public List<Product> getAll(Integer pageNo, Integer pageSize) {
+//
+//        Pageable paging = PageRequest.of(pageNo, pageSize);
+//        Page<Product> pageResult = productRepository.findAll(paging);
+//
+//        if(pageResult.hasContent()) {
+//            return pageResult.getContent();
+//        }else {
+//            return new ArrayList<Product>();
+//        }
+//    }
 
     public Product createProduct(Product product) {
         return productRepository.save(product);

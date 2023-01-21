@@ -4,6 +4,9 @@ import {ProductModel} from '../../product-model';
 import {TranslateService} from '@ngx-translate/core';
 import {ConfirmationService, MessageService} from 'primeng/api';
 import {Subscription} from 'rxjs';
+import {HttpClient} from '@angular/common/http';
+import {environment} from '../../../../environments/environment.staging';
+import {map} from 'rxjs/operators';
 
 @Component({
   selector: 'app-product-list',
@@ -12,10 +15,10 @@ import {Subscription} from 'rxjs';
 })
 export class ProductListComponent implements OnInit, OnDestroy {
 
-
-  first = 0;
+  private apiServerUrl = environment.apiBaseUrl;
+  // first = 0;
   //
-  rows = 10;
+  // rows = 10;
   selectedProduct: ProductModel;
 
   subscriptions: Subscription[] = [];
@@ -25,12 +28,31 @@ export class ProductListComponent implements OnInit, OnDestroy {
   displayAddModal: boolean = false;
 
   products: ProductModel[];
+  itemsPerPage: number = 10;
   constructor(private productService: ProductService, private translateService: TranslateService,
-              private confirmationService: ConfirmationService, private messageService: MessageService) { }
+              private confirmationService: ConfirmationService, private messageService: MessageService,
+              private http: HttpClient) { }
 
   ngOnInit(): void {
 
-    this.getProductList();
+
+    this.loadProducts({first: 0, rows: this.itemsPerPage});
+    // this.fetchProducts({first: 0, rows: this.itemsPerPage});
+   // this.subscription = this.productService.loadData({first: 0, rows: this.itemsPerPage}).subscribe(
+   //    response => {
+   //      this.products = response['content'];
+   //    }
+   //  );
+
+  //   this.getProductList();
+  }
+
+  loadProducts(event: any) {
+    this.productService.loadData(event).subscribe(
+      response => {
+        this.products = response['content'];
+      }
+    );
   }
 
   getProductList() {
@@ -40,7 +62,7 @@ export class ProductListComponent implements OnInit, OnDestroy {
     });
 
     this.subscriptions.push(this.subscription);
-  }
+   }
 
 
   shoAddModal() {
@@ -60,13 +82,8 @@ export class ProductListComponent implements OnInit, OnDestroy {
 
   saveProductToList(newData: any) {
 
-    // if (this.selectedProduct && newData.id === this.selectedProduct.id) {
-    //   const productIndex = this.products.findIndex((data => data.id === newData.id);
-    //   this.products[productIndex] = newData;
-    // } else {
-    //   this.products.unshift(newData);
-    // }
-    this.getProductList();
+
+    // this.getProductList();
   }
 
   deleteProduct(product: ProductModel) {
@@ -76,7 +93,7 @@ export class ProductListComponent implements OnInit, OnDestroy {
         this.subscription = this.productService.deleteProduct(product.id).subscribe(data => {
           console.log(data);
           this.messageService.add({severity: 'success', summary: 'success', detail: 'Product deleted'});
-          this.getProductList();
+          // this.getProductList();
         },
           error => {
             console.log('error occurred');
@@ -93,29 +110,26 @@ export class ProductListComponent implements OnInit, OnDestroy {
   }
 
 
-  paginate($event: any) {
+  // loadData($event: any) {
+  //   this.http.get(`${this.apiServerUrl}/products/getAll?page=${$event.first / $event.rows}&size=${$event.rows}`)
+  //     .subscribe(response => {
+  //       this.products = response['content'];
+  //     });
+  // }
 
+  fetchProducts($event: any) {
+    this.http.get<ProductModel>(`${this.apiServerUrl}/products/getAll?page=${$event.first / $event.rows}&size=${$event.rows}`)
+      .pipe(map(response => {
+          const productArray: ProductModel[] = [];
+          for (const key in response) {
+            if (response.hasOwnProperty(key)) {
+              productArray.push({...productArray[key], id: key});
+            }
+          }
+          return productArray['content'];
+        }
+      )).subscribe(data => {
+        console.log(data);
+    });
   }
 }
-
-
-//
-// next() {
-//   this.first = this.first + this.rows;
-// }
-//
-// prev() {
-//   this.first = this.first - this.rows;
-// }
-//
-// reset() {
-//   this.first = 0;
-// }
-//
-// isLastPage(): boolean {
-//   return this.products ? this.first === (this.products.length - this.rows) : true;
-// }
-//
-// isFirstPage(): boolean {
-//   return this.products ? this.first === 0 : true;
-// }

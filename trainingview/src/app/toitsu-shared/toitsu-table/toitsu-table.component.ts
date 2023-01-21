@@ -63,7 +63,7 @@ export class ToitsuTableComponent implements OnInit, AfterViewInit {
               private toitsuToasterService: ToitsuToasterService,
               private toitsuTableService: ToitsuTableService,
               private exportService: ExportService,
-              private userService: UserService
+
   ) {
   }
 

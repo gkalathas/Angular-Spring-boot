@@ -16,6 +16,10 @@ export class ProductService {
 
   constructor(private httpClient: HttpClient) { }
 
+
+  loadData($event: any) {
+    return this.httpClient.get(`${this.apiServerUrl}/products/getAll?page=${$event.first / $event.rows}&size=${$event.rows}`);
+  }
   getProducts(): Observable<ProductModel[]> {
     return this.httpClient.get<ProductModel[]>(`${this.apiServerUrl}/products/getAll`);
   }

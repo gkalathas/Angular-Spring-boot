@@ -19,8 +19,8 @@ export class AddCampaignComponent implements OnInit {
   campaignDesc: string;
   campaignType: string;
   campaignCost: number;
-  campaignStartDate: Date = new Date();
-  campaignEndDate: Date = new Date();
+  campaignStartDate: string;
+  campaignEndDate: string;
 
 
   constructor(private router: Router, private campaignService: CampaignService) { }
