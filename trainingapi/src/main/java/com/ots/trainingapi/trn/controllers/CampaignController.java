@@ -1,6 +1,7 @@
 package com.ots.trainingapi.trn.controllers;
 
 import com.ots.trainingapi.trn.args.CampaignArgs;
+import com.ots.trainingapi.trn.core.domain.Campaign;
 import com.ots.trainingapi.trn.dto.index.CampaignIndexDto;
 import com.ots.trainingapi.trn.dto.view.CampaignDto;
 import com.ots.trainingapi.trn.services.CampaignService;
@@ -36,7 +37,12 @@ public class CampaignController {
     private final String campaignIndexApiOperationValue = "Ευρετήριο καμπανιών";
     private final String campaignIndexApiOperationNotes = "Ευρετήριο καμπανιών.";
     private final String campaignIndexApiParamArgs = "Κριτήρια αναζήτησης";
-    
+
+
+//    @GetMapping("/getAll")
+//    public Page<Campaign> getAllCampaign(Pageable page) {
+//        return campaignService.getAllCampaign(page);
+//    }
     @ApiOperation(value = campaignIndexApiOperationValue, notes = campaignIndexApiOperationNotes)
     @PostMapping(value = "/index", produces = "application/json;charset=UTF-8")
     public Page<CampaignIndexDto> campaignIndex(Pageable pageable, @RequestBody @ApiParam(campaignIndexApiParamArgs) CampaignArgs args) {

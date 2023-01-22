@@ -42,8 +42,10 @@ public class CampaignServiceImpl implements CampaignService {
     
     @Autowired
     private CampaignRepository campaignRepository;
-    
-    
+
+
+
+
     /**
      * Ορισμός των πεδίων που έρχονται στο index dto
      */
@@ -122,7 +124,13 @@ public class CampaignServiceImpl implements CampaignService {
         
         return errors;
     }
-    
+
+//    @Override
+//    public Page<Campaign> getAllCampaign(Pageable page) {
+//
+//        return getAllCampaign(page);
+//    }
+
     @Override
     public Page<CampaignIndexDto> campaignIndex(CampaignArgs args, Pageable pageable) {
         
