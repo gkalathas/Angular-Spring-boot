@@ -105,8 +105,8 @@ export class ToitsuTableComponent implements OnInit, AfterViewInit {
       theSortOrder = event.sortOrder;
     }
     
-    const page = String(theFirst / theRows + 1);
-    const rows = String(theRows);
+    const page = (theFirst / theRows + 1);
+    const rows = (theRows);
     const sidx = theSortField ? theSortField : 'id';
     const sord = theSortOrder === 1 ? 'asc' : 'desc';
     

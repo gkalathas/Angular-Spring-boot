@@ -6,6 +6,7 @@ import {gpRouting} from './gp.routing';
 import { CampaignsComponent } from './campaigns/campaigns.component';
 import { CampaignListComponent } from './campaigns/campaign-list/campaign-list.component';
 import { AddCampaignComponent } from './campaigns/add-campaign/add-campaign.component';
+import { AddEditCampaignComponent } from './campaigns/add-edit-campaign/add-edit-campaign.component';
 
 
 
@@ -13,7 +14,8 @@ import { AddCampaignComponent } from './campaigns/add-campaign/add-campaign.comp
   declarations: [
     CampaignsComponent,
     CampaignListComponent,
-    AddCampaignComponent
+    AddCampaignComponent,
+    AddEditCampaignComponent
   ],
   exports: [],
   imports: [

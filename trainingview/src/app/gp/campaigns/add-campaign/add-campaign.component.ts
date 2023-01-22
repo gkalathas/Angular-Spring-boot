@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {CampaignModel} from '../../campaign.model';
 import {Router} from '@angular/router';
 import {CampaignService} from '../campaign-service';
+import {MessageService} from 'primeng/api';
 
 @Component({
   selector: 'app-add-campaign',
@@ -11,19 +12,17 @@ import {CampaignService} from '../campaign-service';
 export class AddCampaignComponent implements OnInit {
 
   campaign: CampaignModel;
-  value2: any;
-  date2: any;
 
   campaignId: number;
   campaignName: string;
   campaignDesc: string;
   campaignType: string;
   campaignCost: number;
-  campaignStartDate: string;
-  campaignEndDate: string;
+  campaignStartDate: Date;
+  campaignEndDate: Date;
 
 
-  constructor(private router: Router, private campaignService: CampaignService) { }
+  constructor(private router: Router, private messageService: MessageService, private campaignService: CampaignService) { }
 
   ngOnInit(): void {
   }
@@ -50,5 +49,16 @@ export class AddCampaignComponent implements OnInit {
       this.campaignStartDate,
       this.campaignEndDate);
     this.campaignService.addCampaign(this.campaign);
+
+    this.campaignService.createCampaign(this.campaign).subscribe(
+      response => {
+        console.log(response);
+        this.messageService.add({severity: 'success', summary: 'Success', detail: 'Product Added'});
+      },
+      error => {
+        console.log('error occurred');
+        this.messageService.add({severity: 'error', summary: 'Error', detail: error});
+      }
+    );
   }
 }

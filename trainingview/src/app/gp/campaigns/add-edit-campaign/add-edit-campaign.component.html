@@ -1,0 +1,66 @@
+
+
+<p-dialog header="{{selectedCampaign ? 'Edit Campaign' : 'Add Campaign'}}" [(visible)]="displayAddModal"
+          [modal]="true" [style]="{width: '50vw'}"
+          [draggable]="false" [resizable]="false" (onHide)="closeModal()">
+
+  <form *ngIf="campaignForm" [formGroup]="campaignForm" class="product-form">
+    <div class="field">
+      <label class="block" for="name">Campaign Name</label>
+      <input class="field col-12 md:col-4" type="text" pInputText id="name" formControlName="name"/>
+      <small class="p-error block" *ngIf="campaignForm.controls['name'].invalid &&
+           campaignForm.controls['name'].dirty">Field is required</small>
+    </div>
+
+    <div class="field">
+      <label class="block" for="campaignTypeDescription">Campaign Type Description</label>
+      <textarea class="field col-12 md:col-4" pInputTextarea id="campaignTypeDescription"
+                formControlName="campaignTypeDescription"></textarea>
+      <small class="p-error block" *ngIf="campaignForm.controls['campaignTypeDescription'].invalid &&
+           campaignForm.controls['campaignTypeDescription'].dirty">Field is required</small>
+    </div>
+    <div class="field">
+      <label class="block" for="campaignTypeKind">Campaign Type Kind</label>
+      <input class="field col-12 md:col-4" pInputText id="campaignTypeKind" formControlName="campaignTypeKind">
+      <small id="category-help" class="p-error block" *ngIf="campaignForm.controls['campaignTypeKind'].invalid &&
+           campaignForm.controls['campaignTypeKind'].dirty">Field is required</small>
+    </div>
+    <div class="field">
+      <label class="block" for="cost">Cost</label>
+      <p-inputNumber  [showButtons]="true" id="cost"  buttonLayout="horizontal" inputId="horizontal"
+                      spinnerMode="horizontal" [step]="1"
+                      decrementButtonClass="p-button-danger" incrementButtonClass="p-button-success"
+                      incrementButtonIcon="pi pi-plus" decrementButtonIcon="pi pi-minus" mode="currency"
+                      currency="EUR" formControlName="cost">
+      </p-inputNumber>
+      <small class="p-error block" *ngIf="campaignForm.controls['cost'].invalid &&
+           campaignForm.controls['cost'].dirty">Field is required</small>
+    </div>
+
+    <div class="field col-12 md:col-4" style="float: left">
+      <label for="startDate">Start Date</label>
+      <p-calendar [showIcon]="true" id="startDate" inputId="startDate" formControlName="startDate"></p-calendar>
+    </div>
+
+    <div class="field col-12 md:col-4" style="float: left">
+      <label for="endDate">End Date</label>
+      <p-calendar [showIcon]="true" id="endDate" inputId="endDate" formControlName="endDate"></p-calendar>
+    </div>
+  </form>
+  <ng-template pTemplate="footer">
+    <div class="ui-helper-clearfix">
+      <button class="p-button-danger" type="button" label="Cancel" (click)="closeModal()"
+              pButton icon="fa fa-undo" iconPos="left" style="float:right"></button>
+    </div>
+    <div class="ui-helper-clearfix" *ngIf="modalType==='Add'; else edit">
+      <button type="button" label="Add" [disabled]="campaignForm.invalid" (click)="addCampaign()"
+              pButton icon="fa fa-plus" iconPos="left" style="float:right"></button>
+    </div>
+    <ng-template #edit>
+      <div class="ui-helper-clearfix">
+        <button type="button" label="Edit" [disabled]="campaignForm.invalid" (click)="onUpdateCampaign()"
+                pButton icon="fa fa-plus" iconPos="left" style="float:right"></button>
+      </div>
+    </ng-template>
+  </ng-template>
+</p-dialog>

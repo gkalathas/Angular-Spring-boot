@@ -16,9 +16,6 @@ import {map} from 'rxjs/operators';
 export class ProductListComponent implements OnInit, OnDestroy {
 
   private apiServerUrl = environment.apiBaseUrl;
-  // first = 0;
-  //
-  // rows = 10;
   selectedProduct: ProductModel;
 
   subscriptions: Subscription[] = [];

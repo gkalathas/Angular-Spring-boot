@@ -41,6 +41,7 @@ import {toitsuNavMapConsts} from './toitsu-nav-map.consts';
       </ul>
     </ng-container>
   `,
+  // tslint:disable-next-line:no-host-metadata-property
   host: {
     '[class.active-menuitem]': 'active'
   },
@@ -91,7 +92,7 @@ export class ToitsuNavitemComponent implements OnInit, OnDestroy {
   
   menuResetSubscription: Subscription;
   
-  key: string;
+  key: any;
   
   constructor(public app: AppComponent, public router: Router, private cd: ChangeDetectorRef,
               private toitsuNavService: ToitsuNavService) {
@@ -127,7 +128,7 @@ export class ToitsuNavitemComponent implements OnInit, OnDestroy {
       this.updateActiveStateFromRoute();
     }
     
-    this.key = this.parentKey ? this.parentKey + '-' + this.index : String(this.index);
+    this.key = this.parentKey ? this.parentKey + '-' + this.index : (this.index);
   }
   
   updateActiveStateFromRoute() {
