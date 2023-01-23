@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {Observable} from 'rxjs';
 import {ProductModel} from './product-model';
-import {environment} from '../../environments/environment.staging';
+import {environment} from '../../environments/environment';
 
 
 @Injectable({
@@ -23,6 +23,7 @@ export class ProductService {
   getProducts(): Observable<ProductModel[]> {
     return this.httpClient.get<ProductModel[]>(`${this.apiServerUrl}/products/getAll`);
   }
+
 
   saveProduct(product: ProductModel): Observable<ProductModel> {
 

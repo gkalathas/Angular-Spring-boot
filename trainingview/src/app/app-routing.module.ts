@@ -3,7 +3,6 @@ import {Routes} from '@angular/router';
 import {IndexComponent} from './toitsu-layout/index/index.component';
 import {Toitsu401Component} from './toitsu-shared/toitsu-401/toitsu-401.component';
 import {Toitsu403Component} from './toitsu-shared/toitsu-403/toitsu-403.component';
-import {UserListComponent} from './sa/user-list/user-list.component';
 
 export const appRoutes: Routes = [
   {path: '', component: IndexComponent},

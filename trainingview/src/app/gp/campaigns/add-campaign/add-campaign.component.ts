@@ -1,8 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit, ViewChild} from '@angular/core';
 import {CampaignModel} from '../../campaign.model';
 import {Router} from '@angular/router';
 import {CampaignService} from '../campaign-service';
 import {MessageService} from 'primeng/api';
+import {NgForm} from '@angular/forms';
 
 @Component({
   selector: 'app-add-campaign',
@@ -21,15 +22,21 @@ export class AddCampaignComponent implements OnInit {
   campaignStartDate: Date;
   campaignEndDate: Date;
 
+  @ViewChild('f') signForm: NgForm;
+  campaignTypes: string[];
 
   constructor(private router: Router, private messageService: MessageService, private campaignService: CampaignService) { }
 
   ngOnInit(): void {
   }
 
-  onSubmit() {
+  onSubmit(form: NgForm) {
+    // console.log(form);
+
+    console.log(this.signForm);
 
   }
+
 
   homePage() {
     this.router.navigate(['']);

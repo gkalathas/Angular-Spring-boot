@@ -1,8 +1,9 @@
 import {Injectable} from '@angular/core';
 import {CampaignModel} from '../campaign.model';
 import {HttpClient} from '@angular/common/http';
-import {environment} from '../../../environments/environment.staging';
+import {environment} from '../../../environments/environment';
 import {Observable} from 'rxjs';
+import {ToitsuSharedService} from '../../toitsu-shared/toitsu-shared.service';
 
 
 @Injectable({
@@ -43,17 +44,20 @@ campaigns: CampaignModel[] = [
 
   private apiServerUrl = environment.newUrl;
 
-  constructor(private http: HttpClient) {
+  constructor(private http: HttpClient, private toitsouService: ToitsuSharedService) {
   }
 
 
   createCampaign(campaign: CampaignModel): Observable<CampaignModel> {
-    return this.http.post<CampaignModel>( `${this.apiServerUrl}/create`, campaign);
+    return this.http.post<CampaignModel>( `${this.apiServerUrl}/save`, campaign);
   }
 
   loadData($event: any): Observable<CampaignModel[]> {
     return this.http.get<CampaignModel[]>
     (`${this.apiServerUrl}/trn/campaigns/getAll?page=${$event.first / $event.rows}&size=${$event.rows}`);
+  }
+  loadDataById(id: number): Observable<CampaignModel> {
+    return this.http.get<CampaignModel>(`${this.apiServerUrl}/get?id=${id}`);
   }
 
   loadData1($event: any, campaign: CampaignModel): Observable<CampaignModel> {

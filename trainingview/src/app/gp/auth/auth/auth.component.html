@@ -1,0 +1,31 @@
+
+<div class="grid p-fluid">
+  <form *ngIf="authForm" [formGroup]="authForm" class="auth-form">
+    <div class="field">
+      <label class="block" for="name">Campaign Name</label>
+      <input class="field col-12 md:col-4" type="text" pInputText id="name" style="width:20rem" formControlName="name"/>
+      <small class="p-error block" *ngIf="authForm.controls['name'].invalid &&
+           authForm.controls['name'].dirty">Field is required</small>
+    </div>
+    <div class="field">
+      <label class="block" for="password">Campaign password</label>
+      <input class="field col-12 md:col-4" type="text" pInputText id="password" style="width:20rem" formControlName="password"/>
+      <small class="p-error block" *ngIf="authForm.controls['password'].invalid &&
+           authForm.controls['password'].dirty">Field is required</small>
+    </div>
+  </form>
+
+  <ng-template pTemplate="footer">
+    <div class="ui-helper-clearfix">
+      <button class="p-button-danger" type="button" label="Login" pButton icon="fa fa-undo" iconPos="left" style="float:right"></button>
+    </div>
+    <div class="ui-helper-clearfix">
+      <button type="button" label="Sign Up" pButton icon="fa fa-plus" iconPos="left" style="float:right"></button>
+    </div>
+<!--    <ng-template #edit>-->
+<!--      <div class="ui-helper-clearfix">-->
+<!--        <button type="button" label="Edit" pButton icon="fa fa-plus" iconPos="left" style="float:right"></button>-->
+<!--      </div>-->
+<!--    </ng-template>-->
+  </ng-template>
+</div>

@@ -1,13 +1,13 @@
 
 
-<p-dialog header="{{selectedCampaign ? 'Edit Campaign' : 'Add Campaign'}}" [(visible)]="displayAddModal"
+<p-dialog header="{{selectedCampaign ? 'Edit Campaign' : 'Add Campaign' | translate}}" [(visible)]="displayAddModal"
           [modal]="true" [style]="{width: '50vw'}"
           [draggable]="false" [resizable]="false" (onHide)="closeModal()">
 
   <form *ngIf="campaignForm" [formGroup]="campaignForm" class="product-form">
     <div class="field">
       <label class="block" for="name">Campaign Name</label>
-      <input class="field col-12 md:col-4" type="text" pInputText id="name" formControlName="name"/>
+      <input class="field col-12 md:col-4" type="text" pInputText id="name" formControlName="name" style="width: 50rem"/>
       <small class="p-error block" *ngIf="campaignForm.controls['name'].invalid &&
            campaignForm.controls['name'].dirty">Field is required</small>
     </div>
@@ -15,13 +15,13 @@
     <div class="field">
       <label class="block" for="campaignTypeDescription">Campaign Type Description</label>
       <textarea class="field col-12 md:col-4" pInputTextarea id="campaignTypeDescription"
-                formControlName="campaignTypeDescription"></textarea>
+                formControlName="campaignTypeDescription" style="width: 50rem"></textarea>
       <small class="p-error block" *ngIf="campaignForm.controls['campaignTypeDescription'].invalid &&
            campaignForm.controls['campaignTypeDescription'].dirty">Field is required</small>
     </div>
     <div class="field">
       <label class="block" for="campaignTypeKind">Campaign Type Kind</label>
-      <input class="field col-12 md:col-4" pInputText id="campaignTypeKind" formControlName="campaignTypeKind">
+      <input class="field col-12 md:col-4" pInputText id="campaignTypeKind" style="width: 50rem" formControlName="campaignTypeKind">
       <small id="category-help" class="p-error block" *ngIf="campaignForm.controls['campaignTypeKind'].invalid &&
            campaignForm.controls['campaignTypeKind'].dirty">Field is required</small>
     </div>
@@ -37,14 +37,15 @@
            campaignForm.controls['cost'].dirty">Field is required</small>
     </div>
 
-    <div class="field col-12 md:col-4" style="float: left">
-      <label for="startDate">Start Date</label>
-      <p-calendar [showIcon]="true" id="startDate" inputId="startDate" formControlName="startDate"></p-calendar>
-    </div>
-
-    <div class="field col-12 md:col-4" style="float: left">
-      <label for="endDate">End Date</label>
-      <p-calendar [showIcon]="true" id="endDate" inputId="endDate" formControlName="endDate"></p-calendar>
+    <div class="lg:inline-block" style="float:right">
+      <div class="field col-12 md:col-4" style=" float: right">
+        <label for="startDate">{{'startDate' | translate}}</label>
+        <p-calendar [showIcon]="true" inputId="startDate" id="startDate"  formControlName="campaignStartDate" required></p-calendar>
+      </div>
+      <div class="field col-12 md:col-4" style="float: right">
+        <label for="endDate">{{'endDate' | translate}}</label>
+        <p-calendar [showIcon]="true" inputId="endDate" id="endDate"  formControlName="campaignEndDate" required></p-calendar>
+      </div>
     </div>
   </form>
   <ng-template pTemplate="footer">

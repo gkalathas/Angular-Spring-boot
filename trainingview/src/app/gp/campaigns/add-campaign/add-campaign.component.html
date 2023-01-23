@@ -16,19 +16,19 @@
   <p-card header="{{'New Campaign' | translate}}">
     <div class="field">
       <span class="p-float-label" style="margin: 20px">
-        <input type="text" pInputText [(ngModel)]="campaignId" id="campaignId" style="width: 15rem">
+        <input type="text" pInputText [(ngModel)]="campaignId" id="campaignId" style="width: 50rem">
         <label for="campaignId">{{'campaign.ID' | translate}}</label>
       </span>
       <span class="p-float-label" style="margin: 20px">
-        <input type="text" pInputText [(ngModel)]="campaignName" id="campaignName" style="width: 15rem">
+        <input type="text" pInputText [(ngModel)]="campaignName" id="campaignName" style="width: 50rem">
         <label for="campaignName">{{'campaign.name' | translate}}</label>
       </span>
       <span class="p-float-label" style="margin: 20px">
-        <input type="text" pInputText [(ngModel)]="campaignType" id="campaignType" style="width: 15rem">
+        <input type="text" pInputText [(ngModel)]="campaignType" id="campaignType" style="width: 50rem">
         <label for="campaignType">{{'campaignTypeKind' | translate}}</label>
       </span>
       <span class="p-float-label" style="margin: 20px">
-        <input type="text" pInputText [(ngModel)]="campaignCost" id="campaignCost" style="width: 15rem">
+        <input type="text" pInputText [(ngModel)]="campaignCost" id="campaignCost" style="width: 50rem">
         <label for="campaignCost">{{'campaign.cost' | translate}}</label>
       </span>
       <span class="p-float-label" style="margin: 20px">
@@ -36,23 +36,99 @@
                 style="width: 30rem"  pInputTextarea autoResize="autoResize"></textarea>
         <label for="campaignDesc">{{'campaignTypeDescription' | translate}}</label>
       </span>
-      <div class="field col-12 md:col-4" style="float: left">
+    </div>
+    <div class="lg:inline-block" style="float:right">
+      <div class="field col-12 md:col-4" style=" float: right">
         <label for="startDate">{{'startDate' | translate}}</label>
-        <p-calendar [showIcon]="true" id="startDate" inputId="startDate" [(ngModel)]="campaignStartDate"></p-calendar>
+        <p-calendar [showIcon]="true" inputId="startDate" id="startDate" [(ngModel)]="campaignStartDate"></p-calendar>
       </div>
-
-      <div class="field col-12 md:col-4" style="float: left">
+      <div class="field col-12 md:col-4" style="float: right">
         <label for="endDate">{{'endDate' | translate}}</label>
-        <p-calendar [showIcon]="true" id="endDate" inputId="endDate" [(ngModel)]="campaignEndDate"></p-calendar>
+        <p-calendar [showIcon]="true" inputId="endDate" id="endDate"  [(ngModel)]="campaignEndDate"></p-calendar>
       </div>
     </div>
 
-    <ng-template pTemplate="footer">
-      <button pButton pRipple type="button" label="{{'Save' | translate}}" class="p-button-success" (click)="onAddCampaign()" style="margin: 5px"></button>
-      <button pButton pRipple type="button" label="{{'Cancel' | translate}}" class="p-button-danger" style="margin: 5px"></button>
+    <ng-template pTemplate="footer" style="float: right">
+      <button pButton pRipple type="button" label="{{'Save' | translate}}" class="p-button-success"
+              (click)="onAddCampaign()" style="margin: 5px"></button>
+      <button pButton pRipple type="button" label="{{'Cancel' | translate}}" class="p-button-danger"
+              style="margin: 5px"></button>
     </ng-template>
   </p-card>
 </div>
+<div></div>
+<br>
+<p-header>
+  <div class="container">
+    <div style="text-align: left ">
+      <div class="fc-button-group" >
+        <button  pButton type="button" label="{{'Home' | translate}}" (click)="homePage()"
+                 class="p-button-success" style="margin: 5px"></button>
+        <button pButton type="button" label="{{'All Campaigns' | translate}}" (click)="showAll()"
+                class="p-button-plain" style="margin: 5px"></button>
+      </div>
+    </div>
+  </div>
+</p-header>
+<form (ngSubmit)="onSubmit(f)" #f=ngForm>
+  <div class="field" ngModelGroup="group">
+      <span class="p-float-label" style="margin: 20px">
+        <input type="text" pInputText ngModel name="campaignId"  style="width: 50rem" required>
+        <label for="campaignId">{{'campaign.ID' | translate}}</label>
+      </span>
+    <span class="p-float-label" style="margin: 20px">
+        <input type="text" pInputText ngModel name="campaignName"  style="width: 50rem" required>
+        <label for="campaignName">{{'campaign.name' | translate}}</label>
+      </span>
+    <span class="p-float-label" style="margin: 20px">
+        <input type="text" pInputText ngModel name="campaignType"  style="width: 50rem" required>
+        <label for="campaignType">{{'campaignTypeKind' | translate}}</label>
+      </span>
+    <span class="p-float-label" style="margin: 20px">
+        <input type="text" pInputText ngModel name="campaignCost" style="width: 50rem" required>
+        <label for="campaignCost">{{'campaign.cost' | translate}}</label>
+      </span>
+    <div class="inline-block" style="float:left ">
+      <span class="p-float-label" style="margin: 20px">
+        <textarea rows="5" cols="30" ngModel name="campaignDesc"
+                  style="width: 30rem"  pInputTextarea autoResize="autoResize" required></textarea>
+        <label for="campaignDesc">{{'campaignTypeDescription' | translate}}</label>
+        </span>
+    </div>
+
+
+    <div class="xl:inline-block" style="flex-direction: ">
+      <div class="field col-12 md:col-4" style=" float: left">
+        <label for="campaignCost" style="margin: 1rem">{{'campaignTypeKind' | translate}}</label>
+        <p-dropdown [options]="campaignTypes" ngModel=""
+                    [ngModel]="'Select Type'" optionLabel="name">
+
+        </p-dropdown>
+      </div>
+
+      <div class="field col-12 md:col-4" style=" float: right">
+        <label for="startDate">{{'startDate' | translate}}</label>
+        <p-calendar [showIcon]="true" inputId="startDate" ngModel name="campaignStartDate" style="margin-right: 1rem" required></p-calendar>
+      </div>
+      <div class="field col-12 md:col-4" style="float: right">
+        <label for="endDate">{{'endDate' | translate}}</label>
+        <p-calendar [showIcon]="true" inputId="endDate" ngModel name="campaignEndDate" style="margin-right: 1rem" required></p-calendar>
+      </div>
+    </div>
+  </div>
+</form>
+
+<footer class="flex-row">
+  <div class="field lg:col-12 padding-top: top-100" style=" float: left">
+    <button pRipple type="submit" label="{{'Save' | translate}}" pButton icon="fa fa-plus"
+            iconPos="left" style="margin:1rem"
+            [disabled]="!f.valid"></button>
+    <button pButton pRipple type="button" label="{{'Save' | translate}}" class="p-button-success"
+            (click)="onAddCampaign()" style="margin:1rem"></button>
+    <button pButton pRipple type="button" label="{{'Cancel' | translate}}" class="p-button-danger"
+            style="margin:1rem"></button>
+  </div>
+</footer>
 
 
 

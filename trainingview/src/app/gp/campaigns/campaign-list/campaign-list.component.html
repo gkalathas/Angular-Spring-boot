@@ -1,6 +1,6 @@
 
 
-<p-table [value]="campaigns"selectionMode="single" [lazy]="true" [(selection)]="campaign1" dataKey="id"
+<p-table [value]="campaigns" selectionMode="single" [lazy]="true" [(selection)]="campaign1" dataKey="id"
          [paginator]="true" [showCurrentPageReport]="true" [rows]="itemsPerPage"
          (onLazyLoad)="loadData($event)"
    currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"

@@ -7,27 +7,29 @@
   <form *ngIf="productForm" [formGroup]="productForm" class="product-form">
     <div class="field">
       <label class="block" for="title">Title</label>
-      <input class="field col-12 md:col-4" type="text" pInputText id="title" formControlName="title"/>
+      <input class="field col-12 md:col-4" type="text" pInputText id="title" style="width: 40rem" formControlName="title"/>
       <small class="p-error block" *ngIf="productForm.controls['title'].invalid &&
            productForm.controls['title'].dirty">Field is required</small>
     </div>
 
     <div class="field">
       <label class="block" for="image">Image</label>
-      <textarea class="field col-12 md:col-4" pInputTextarea id="image" formControlName="image"></textarea>
+      <textarea class="field col-12 md:col-4" pInputTextarea id="image" formControlName="image"
+                style="width: 40rem"></textarea>
       <small class="p-error block" *ngIf="productForm.controls['image'].invalid &&
            productForm.controls['image'].dirty">Field is required</small>
     </div>
     <div class="field">
       <label class="block" for="pcategory">Category</label>
-      <textarea class="field col-12 md:col-4" pInputTextarea id="pcategory" formControlName="pcategory"></textarea>
+      <textarea class="field col-12 md:col-4" pInputTextarea id="pcategory" formControlName="pcategory"
+                style="width: 40rem"></textarea>
       <small id="category-help" class="p-error block" *ngIf="productForm.controls['pcategory'].invalid &&
            productForm.controls['pcategory'].dirty">Field is required</small>
     </div>
     <div class="field">
       <label class="block" for="price">Price</label>
       <p-inputNumber  [showButtons]="true" id="price"  buttonLayout="horizontal" inputId="horizontal"
-                      spinnerMode="horizontal" [step]="0.25"
+                      spinnerMode="horizontal" [step]="100"
                       decrementButtonClass="p-button-danger" incrementButtonClass="p-button-success"
                       incrementButtonIcon="pi pi-plus" decrementButtonIcon="pi pi-minus" mode="currency"
                       currency="EUR" formControlName="price">

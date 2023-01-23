@@ -7,6 +7,7 @@ import { CampaignsComponent } from './campaigns/campaigns.component';
 import { CampaignListComponent } from './campaigns/campaign-list/campaign-list.component';
 import { AddCampaignComponent } from './campaigns/add-campaign/add-campaign.component';
 import { AddEditCampaignComponent } from './campaigns/add-edit-campaign/add-edit-campaign.component';
+import { AuthComponent } from './auth/auth/auth.component';
 
 
 
@@ -15,9 +16,12 @@ import { AddEditCampaignComponent } from './campaigns/add-edit-campaign/add-edit
     CampaignsComponent,
     CampaignListComponent,
     AddCampaignComponent,
-    AddEditCampaignComponent
+    AddEditCampaignComponent,
+    AuthComponent
   ],
-  exports: [],
+  exports: [
+    AuthComponent
+  ],
   imports: [
     RouterModule.forChild(gpRouting),
     ToitsuSharedModule,

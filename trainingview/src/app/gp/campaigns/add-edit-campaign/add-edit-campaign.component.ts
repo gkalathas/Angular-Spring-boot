@@ -59,7 +59,6 @@ export class AddEditCampaignComponent implements OnInit, OnChanges, OnDestroy {
       startDate: [Date, Validators.required],
       endDate: [Date, Validators.required]
     });
-
   }
 
 

@@ -1,34 +1,12 @@
-.custom {
-  position: relative;
+.custom  .container {
+  //position: relative;
   display: flex;
-  justify-content: flex-start;
+  justify-content: center;
+}
+input.ng-invalid.ng-touched  {
+  border: 1px solid red;
 }
 
-
-//
-//.calendar {
-//  position: absolute;
-//  top: 8px;
-//  right: 16px;
-//  font-size: 18px;
-//  display: flex;
-//  justify-content: flex-end;
-//  box-sizing: border-box;
-//  margin: 1rem .25rem;
-//}
-//.field {
-//  //flex: 1 0 500px;
-//  position: absolute;
-//  top: 8px;
-//  right: 16px;
-//  font-size: 18px;
-//  display: flex;
-//  justify-content: flex-end;
-//  box-sizing: border-box;
-//  margin: 1rem .25rem;
-//}
-
-//.centered {
-//  display: flex;
-//  justify-content: center;
-//}
+.pInputTextarea.ng-invalid.ng-touched {
+  border: 1px solid red;
+}
