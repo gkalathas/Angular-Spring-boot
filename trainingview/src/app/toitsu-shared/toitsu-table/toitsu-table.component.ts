@@ -48,13 +48,11 @@ export class ToitsuTableComponent implements OnInit, AfterViewInit {
   @ContentChild('cell2', {static: false}) cell2Ref: TemplateRef<any>;
   @ContentChild('cell3', {static: false}) cell3Ref: TemplateRef<any>;
 
-  data: UserModel[];
+  data;
   totalRecords: number;
   loading: boolean;
 
   storedPaging = {};
-
-  users: UserModel[];
 
   constructor(private http: HttpClient,
               private router: Router,

@@ -22,7 +22,8 @@ import {IndexComponent} from './toitsu-layout/index/index.component';
 import {SaModule} from './sa/sa.module';
 import {CdModule} from './cd/cd.module';
 import {ReactiveFormsModule} from '@angular/forms';
-import {GpModule} from "./gp/gp.module";
+import {GpModule} from './gp/gp.module';
+import {OpModule} from './op/op.module';
 
 @NgModule({
   declarations: [
@@ -51,7 +52,8 @@ import {GpModule} from "./gp/gp.module";
     ToitsuSharedModule,
     SaModule,
     CdModule,
-    GpModule
+    GpModule,
+    OpModule
   ],
   providers: [
     {

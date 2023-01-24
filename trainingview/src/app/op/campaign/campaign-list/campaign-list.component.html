@@ -1,0 +1,16 @@
+<p>campaign-list works!</p>
+
+
+
+
+<app-toitsu-table
+#table
+[url]="url"
+[args]="args"
+[first]="first"
+[cols]="cols"
+[viewLink]="viewLink"
+[loadOnInit]="false"
+(loadComplete)="loadComplete($event)"
+(loadError)="loadError($event)"
+></app-toitsu-table>
