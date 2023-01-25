@@ -10,7 +10,7 @@ import { CampaignViewComponent } from './campaign/campaign-view/campaign-view.co
 @NgModule({
   declarations: [
     CampaignListComponent,
-    CampaignViewComponent
+    CampaignViewComponent,
   ],
   exports: [],
   imports: [

@@ -5,6 +5,8 @@ import {DialogService} from 'primeng/dynamicdialog';
 import {ActivatedRoute, Router} from '@angular/router';
 import {Subscription} from 'rxjs';
 import {Campaign} from '../../campaign';
+import {CampaignService} from '../../campaign.service';
+import {CampaignTypeService} from '../../campaign-type.service';
 
 @Component({
   selector: 'app-campaign-list',
@@ -26,11 +28,12 @@ export class CampaignListComponent implements OnInit {
   constructor(private translateService: TranslateService,
               private dialogService: DialogService,
               private activatedRoute: ActivatedRoute,
-              private router: Router) { }
+              private router: Router,
+              private campaignService: CampaignService,
+              private campaignTypeService: CampaignTypeService) { }
 
   @ViewChild(ToitsuTableComponent) table;
 
-  // @ContentChild(ToitsuTableComponent) cell1;
 
   url = '/trn/campaigns/index';
   args = this.initializeArgs();
@@ -151,9 +154,11 @@ export class CampaignListComponent implements OnInit {
   }
 
   rowclicked(rowData) {
-    this.viewModal(rowData);
+    // this.viewModal(rowData);
     console.log(rowData);
     console.log(rowData.id);
+    if (this.selectedCampaign) {
+    }
 
   }
 

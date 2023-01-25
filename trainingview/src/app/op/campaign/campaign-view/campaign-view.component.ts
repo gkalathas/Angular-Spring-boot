@@ -1,19 +1,23 @@
-import {Component, OnInit,  ViewChild} from '@angular/core';
+import {Component, Input, OnChanges, OnInit, ViewChild} from '@angular/core';
 import {ConfirmationService, MessageService} from 'primeng/api';
 import {ActivatedRoute, Router} from '@angular/router';
-import {NgForm} from '@angular/forms';
+import {FormGroup, NgForm} from '@angular/forms';
 import {Campaign} from '../../campaign';
 import {TranslateService} from '@ngx-translate/core';
 import {CampaignService} from '../../campaign.service';
+import {CampaignTypeService} from '../../campaign-type.service';
 
 @Component({
   selector: 'app-campaign-view',
   templateUrl: './campaign-view.component.html',
   styleUrls: ['./campaign-view.component.scss']
 })
-export class CampaignViewComponent implements OnInit {
+export class CampaignViewComponent implements OnInit, OnChanges {
 
-  @ViewChild('f') form: NgForm;
+  viewType: string;
+  @Input()selectedCampaign: Campaign;
+
+  @ViewChild('f') form: FormGroup;
   retrievedId = null;
   campaign: Campaign = new Campaign();
 
@@ -23,7 +27,8 @@ export class CampaignViewComponent implements OnInit {
               private router: Router,
               private confirmationService: ConfirmationService,
               private translateService: TranslateService,
-              private campaignService: CampaignService) { }
+              private campaignService: CampaignService,
+              private campaignTypeService: CampaignTypeService) { }
 
 
 
@@ -41,6 +46,17 @@ export class CampaignViewComponent implements OnInit {
   //       });
   //   }
   }
+
+  ngOnChanges(): void {
+    if (this.selectedCampaign) {
+      this.viewType = 'edit';
+      this.form.patchValue(this.selectedCampaign);
+    }else {
+      this.viewType = 'add';
+      this.form.reset();
+    }
+  }
+
 
 
   onSubmit() {
