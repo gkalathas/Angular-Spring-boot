@@ -12,6 +12,9 @@ export const OpRouting = [
       },
       {path: 'view', component: CampaignViewComponent, data: {title: 'op.campaign.view', breadcrumbs: [
             {label: 'op.view', routerLink: ['/op/campaign/view']}], permissions: []}
+      },
+      {path: 'view/:id', component: CampaignViewComponent, data: {title: 'op.campaign.edit', breadcrumbs: [
+            {label: 'op.view.edit', routerLink: ['/op/campaign/view']}], permissions: []}
       }
     ]
   }

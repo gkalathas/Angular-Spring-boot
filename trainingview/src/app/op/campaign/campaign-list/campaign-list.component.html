@@ -1,16 +1,25 @@
-<p>campaign-list works!</p>
 
 
-
+<p-header>
+  <div class="container">
+    <div style="text-align: left ">
+      <div class="fc-button-group" >
+        <button  pButton type="button" label="{{'Home' | translate}}" (click)="homePage()"
+                 class="p-button-success" style="margin: 5px"></button>
+      </div>
+    </div>
+  </div>
+</p-header>
 
 <app-toitsu-table
-#table
 [url]="url"
 [args]="args"
-[first]="first"
+[loadOnInit]="true"
 [cols]="cols"
 [viewLink]="viewLink"
-[loadOnInit]="false"
 (loadComplete)="loadComplete($event)"
 (loadError)="loadError($event)"
+(rowClicked)="rowclicked($event)"
+
 ></app-toitsu-table>
+

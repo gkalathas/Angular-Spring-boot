@@ -19,8 +19,8 @@ export class AddCampaignComponent implements OnInit {
   campaignDesc: string;
   campaignType: string;
   campaignCost: number;
-  campaignStartDate: Date;
-  campaignEndDate: Date;
+  startDate: Date;
+  endDate: Date;
 
   @ViewChild('f') signForm: NgForm;
   campaignTypes: string[];
@@ -53,8 +53,8 @@ export class AddCampaignComponent implements OnInit {
       this.campaignDesc,
       this.campaignType,
       this.campaignCost,
-      this.campaignStartDate,
-      this.campaignEndDate);
+      this.startDate,
+      this.endDate);
     this.campaignService.addCampaign(this.campaign);
 
     this.campaignService.createCampaign(this.campaign).subscribe(

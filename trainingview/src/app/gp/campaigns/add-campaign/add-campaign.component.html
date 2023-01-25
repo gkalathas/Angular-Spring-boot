@@ -40,11 +40,11 @@
     <div class="lg:inline-block" style="float:right">
       <div class="field col-12 md:col-4" style=" float: right">
         <label for="startDate">{{'startDate' | translate}}</label>
-        <p-calendar [showIcon]="true" inputId="startDate" id="startDate" [(ngModel)]="campaignStartDate"></p-calendar>
+        <p-calendar [showIcon]="true" inputId="startDate" id="startDate" [(ngModel)]="startDate"></p-calendar>
       </div>
       <div class="field col-12 md:col-4" style="float: right">
         <label for="endDate">{{'endDate' | translate}}</label>
-        <p-calendar [showIcon]="true" inputId="endDate" id="endDate"  [(ngModel)]="campaignEndDate"></p-calendar>
+        <p-calendar [showIcon]="true" inputId="endDate" id="endDate"  [(ngModel)]="endDate"></p-calendar>
       </div>
     </div>
 
@@ -97,7 +97,7 @@
     </div>
 
 
-    <div class="xl:inline-block" style="flex-direction: ">
+    <div class="xl:inline-block" >
       <div class="field col-12 md:col-4" style=" float: left">
         <label for="campaignCost" style="margin: 1rem">{{'campaignTypeKind' | translate}}</label>
         <p-dropdown [options]="campaignTypes" ngModel=""
@@ -108,11 +108,11 @@
 
       <div class="field col-12 md:col-4" style=" float: right">
         <label for="startDate">{{'startDate' | translate}}</label>
-        <p-calendar [showIcon]="true" inputId="startDate" ngModel name="campaignStartDate" style="margin-right: 1rem" required></p-calendar>
+        <p-calendar [showIcon]="true" inputId="startDate" ngModel name="startDate" style="margin-right: 1rem" required></p-calendar>
       </div>
       <div class="field col-12 md:col-4" style="float: right">
         <label for="endDate">{{'endDate' | translate}}</label>
-        <p-calendar [showIcon]="true" inputId="endDate" ngModel name="campaignEndDate" style="margin-right: 1rem" required></p-calendar>
+        <p-calendar [showIcon]="true" inputId="endDate" ngModel name="endDate" style="margin-right: 1rem" required></p-calendar>
       </div>
     </div>
   </div>

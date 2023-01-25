@@ -1,4 +1,54 @@
-<p>campaign-view works!</p>
 
+
+<form (ngSubmit)="onSubmit()" #f=ngForm>
+  <div class="field" ngModelGroup="group">
+      <span class="p-float-label form-group" style="margin: 20px">
+        <input type="text" class="form-control" pInputText ngModel name="campaign.id"  style="width: 50rem" required>
+        <label>{{'campaign.ID' | translate}}</label>
+      </span>
+    <span class="p-float-label form-group" style="margin: 20px">
+        <input type="text" class="form-control" pInputText ngModel name="campaign.name"  style="width: 50rem" required>
+        <label >{{'campaign.name' | translate}}</label>
+      </span>
+    <span class="p-float-label form-group" style="margin: 20px">
+        <input type="text" class="form-control" pInputText   style="width: 50rem" required>
+        <label>{{'campaignTypeKind' | translate}}</label>
+      </span>
+    <span class="p-float-label form-group" style="margin: 20px">
+        <input type="text" class="form-control" pInputText ngModel name="campaign.cost" style="width: 50rem" required>
+        <label>{{'campaign.cost' | translate}}</label>
+      </span>
+    <div class="inline-block form-group" style="float:left ">
+      <span class="p-float-label" style="margin: 20px">
+        <textarea rows="5" cols="30" class="form-control" ngModel name="campaign.comments"
+                  style="width: 30rem"  pInputTextarea autoResize="autoResize" required></textarea>
+        <label>{{'campaignTypeDescription' | translate}}</label>
+        </span>
+    </div>
+
+    <div class="xl:inline-block" >
+      <div class="field col-12 md:col-4 form-group" style=" float: right">
+        <label >{{'startDate' | translate}}</label>
+        <p-calendar [showIcon]="true" inputId="startDate" class="form-control" ngModel name="startDate"  required></p-calendar>
+      </div>
+      <div class="field col-12 form-group md:col-4" style="float: right">
+        <label>{{'endDate' | translate}}</label>
+        <p-calendar [showIcon]="true" class="form-control" inputId="endDate" ngModel name="endDate"  required></p-calendar>
+      </div>
+    </div>
+  </div>
+
+  <footer class="flex-row">
+    <div class="field lg:col-12 padding-top: top-100" style=" float: left">
+      <button pRipple type="submit" label="{{'Save' | translate}}" pButton icon="fa fa-plus"
+              iconPos="left" style="margin:1rem"
+              [disabled]="!f.valid"></button>
+      <button pButton pRipple type="button" label="{{'Save' | translate}}" class="p-button-success"
+              (click)="onAddCampaign()" style="margin:1rem"></button>
+      <button pButton pRipple type="button" label="{{'Cancel' | translate}}" class="p-button-danger"
+              style="margin:1rem"></button>
+    </div>
+  </footer>
+</form>
 
 

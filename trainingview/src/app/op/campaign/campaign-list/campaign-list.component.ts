@@ -1,7 +1,10 @@
-import {Component, OnInit, ViewChild} from '@angular/core';
+import {Component, ContentChild, OnInit, ViewChild} from '@angular/core';
 import {ToitsuTableComponent} from '../../../toitsu-shared/toitsu-table/toitsu-table.component';
 import {TranslateService} from '@ngx-translate/core';
 import {DialogService} from 'primeng/dynamicdialog';
+import {ActivatedRoute, Router} from '@angular/router';
+import {Subscription} from 'rxjs';
+import {Campaign} from '../../campaign';
 
 @Component({
   selector: 'app-campaign-list',
@@ -10,22 +13,38 @@ import {DialogService} from 'primeng/dynamicdialog';
 })
 export class CampaignListComponent implements OnInit {
 
-  constructor(private translateService: TranslateService,
-              private dialogService: DialogService) { }
+  selectedCampaign: Campaign;
 
+  subscriptions: Subscription[] = [];
+
+  subscription: Subscription;
+
+  displayAddModal: boolean = false;
+
+  id: number;
+
+  constructor(private translateService: TranslateService,
+              private dialogService: DialogService,
+              private activatedRoute: ActivatedRoute,
+              private router: Router) { }
 
   @ViewChild(ToitsuTableComponent) table;
 
-  // const args = {}
-  url = 'trainingapi/trn/campaigns/index';
+  // @ContentChild(ToitsuTableComponent) cell1;
+
+  url = '/trn/campaigns/index';
   args = this.initializeArgs();
-  first: any;
-  rows: any;
-  sortField: any;
-  sortOrder: any;
-  viewLink = '/trn/campaigns/index';
+
+  viewLink = '/trn/campaign/view/:id';
 
   cols = [
+    {
+      field: 'extraActions',
+      header: this.translateService.instant('extraActions'),
+      sortField: '',
+      width: 20,
+      align: 'center'
+    },
     {
       field: 'id',
       header: this.translateService.instant('id'),
@@ -81,18 +100,25 @@ export class CampaignListComponent implements OnInit {
       sortField: 'comments',
       width: 20,
       align: 'center'
-    }
+    },
   ];
 
   ngOnInit(): void {
   }
 
-  loadComplete($event: {}) {
-    
+  loadTableData() {
+    this.table.loadTableDate();
   }
 
-  loadError($event: {}) {
-    
+  loadComplete(responseData) {
+    console.log(responseData);
+  }
+
+  loadError(responseError) {
+    console.log(responseError);
+  }
+  clearArgs() {
+    this.args = this.initializeArgs();
   }
 
   initializeArgs() {
@@ -103,5 +129,36 @@ export class CampaignListComponent implements OnInit {
       startDateAfter: null,
       startDateBefore: null
     };
+  }
+
+  shoAddModal() {
+    this.displayAddModal = true;
+    this.selectedCampaign = null;
+  }
+
+
+  hideAddModal(isClosed: boolean) {
+    this.displayAddModal = !isClosed;
+  }
+
+  viewModal(campaign: Campaign) {
+    this.displayAddModal = true;
+    this.selectedCampaign = campaign;
+  }
+
+  homePage() {
+    this.router.navigate(['']);
+  }
+
+  rowclicked(rowData) {
+    this.viewModal(rowData);
+    console.log(rowData);
+    console.log(rowData.id);
+
+  }
+
+
+  onAddCampaign() {
+
   }
 }

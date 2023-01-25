@@ -7,8 +7,6 @@ import {ToitsuToasterService} from '../toitsu-toaster/toitsu-toaster.service';
 import {ExportService} from '../../cm/export/export.service';
 import {ExportModel} from '../../cm/export/export.model';
 import {environment} from '../../../environments/environment';
-import {UserService} from '../../user-service';
-import {UserModel} from '../../user.model';
 
 @Component({
   selector: 'app-toitsu-table',

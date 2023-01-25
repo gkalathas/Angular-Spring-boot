@@ -4,11 +4,9 @@
 
 export const environment = {
   production: false,
-  apiBaseUrl: 'http://localhost:8080',
+  newUrl: 'http://localhost:8081',
 
-  newUrl: 'http://localhost:8081'
-
-  // apiBaseUrl: 'http://localhost:8080/trainingapi'
+  apiBaseUrl: 'http://localhost:8080/trainingapi'
 };
 
 /*

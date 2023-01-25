@@ -10,7 +10,7 @@ import {environment} from '../../environments/environment';
 })
 export class ProductService {
 
-  private apiServerUrl = environment.apiBaseUrl;
+  private apiServerUrl = environment.newUrl;
 
   // private apiServerUrl = 'http://localhost:8080/';
 
