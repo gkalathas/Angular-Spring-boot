@@ -10,6 +10,7 @@ import {ToitsuToasterService} from '../../../toitsu-shared/toitsu-toaster/toitsu
 import {ToitsuBlockUiService} from '../../../toitsu-shared/toitsu-blockui/toitsu-block-ui.service';
 import {Calendar} from 'primeng/calendar';
 import {campaignConsts} from '../../campaign.consts';
+import {CampaignType} from "../../campaign-type";
 
 @Component({
   selector: 'app-campaign-view',
@@ -26,6 +27,7 @@ export class CampaignViewComponent implements OnInit {
 
   retrievedId: number;
 
+  selectType: any;
   campaignTypes: Array<SelectItem>;
   // campaignTypes: any =  this.campaignTypeService.getAll().subscribe(
   //   response => {
@@ -115,9 +117,6 @@ export class CampaignViewComponent implements OnInit {
       }
     });
   }
-  statusChange() {
-
-  }
 
   homePage() {
     this.router.navigate(['']);
@@ -127,7 +126,13 @@ export class CampaignViewComponent implements OnInit {
 
   }
 
+  dropType: string = '';
   campaignTypeIdChange($event: any) {
 
+  }
+  getSelectedCampaign() {
+    this.campaignTypeService.getall().subscribe(
+      campaignT => this.selectType = campaignT
+    );
   }
 }

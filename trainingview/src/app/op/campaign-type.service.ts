@@ -30,4 +30,7 @@ export class CampaignTypeService {
         })
     );
   }
+  getall() {
+    return this.http.get (this.apiUrl + campaignTypeConsts.getAll);
+  }
 }
