@@ -2,6 +2,8 @@ import { Injectable } from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {environment} from '../../environments/environment';
 import {Campaign} from './campaign';
+import {ToitsuSharedService} from '../toitsu-shared/toitsu-shared.service';
+import {campaignConsts} from './campaign.consts';
 
 @Injectable({
   providedIn: 'root'
@@ -9,23 +11,21 @@ import {Campaign} from './campaign';
 export class CampaignService {
 
   apiUrl = environment.apiBaseUrl;
-  constructor(private httpClient: HttpClient) { }
-
-  // campaignConsts: Campaign
-  // getByID(id: number) {
-  //   return this.httpClient.get();
-  // }
+  constructor(private httpClient: HttpClient,
+              private toitsouSharedService: ToitsuSharedService) { }
 
   getCampaignById(id: number) {
-    this.httpClient.get(`${this.apiUrl}/trn/campaigns/get?getCampaignApiParamId=id`);
+    return this.httpClient.get(this.apiUrl + campaignConsts.getById,
+      {params: this.toitsouSharedService.initHttpParams({id})});
   }
 
   saveCampaign(campaign: Campaign) {
-    this.httpClient.post(`${this.apiUrl}/trn/campaigns/save`, campaign);
+    return this.httpClient.post(this.apiUrl + campaignConsts.saveUrl, campaign);
   }
 
   deleteCampaign(id: number) {
-    this.httpClient.delete(`${this.apiUrl}/trn/campaigns/delete?deleteCampaignApiParamId=id`);
+    return this.httpClient.delete(this.apiUrl + campaignConsts.deleteUrl, {
+      params: this.toitsouSharedService.initHttpParams({id})});
   }
 
 }

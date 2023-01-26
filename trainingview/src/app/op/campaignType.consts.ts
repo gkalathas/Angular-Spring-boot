@@ -1,7 +1,6 @@
 
-export const campaignTypeConsts = [
+export const campaignTypeConsts =
   {
-    getAll: '/trn/campaigntypes/getAll'
+    getAll: '/trn/campaigntypes/getall'
 
-  }
-];
+  };

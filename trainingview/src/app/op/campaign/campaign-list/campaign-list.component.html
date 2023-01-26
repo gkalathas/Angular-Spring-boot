@@ -4,25 +4,67 @@
   <div class="container">
     <div style="text-align: left ">
       <div class="fc-button-group" >
-        <button  pButton type="button" label="{{'Home' | translate}}" (click)="homePage()"
+        <button  pButton type="button" icon="fa fa-home" iconPos="left" label="{{'Home' | translate}}" (click)="homePage()"
                  class="p-button-success" style="margin: 5px"></button>
+        <button  type="button" label="{{'global.add'| translate }}" pButton icon="fa fa-plus" iconPos="left" (click)="onAddCampaign()"
+                 class="p-button-primary" style="margin: 5px"></button>
+      </div>
+      <div class="fc-button-group">
+
       </div>
     </div>
   </div>
 </p-header>
 
-<app-toitsu-table
-[url]="url"
-[args]="args"
-[loadOnInit]="true"
-[cols]="cols"
-[viewLink]="viewLink"
-(loadComplete)="loadComplete($event)"
-(loadError)="loadError($event)"
-(rowClicked)="rowclicked($event)"
-
-></app-toitsu-table>
+<p-panel header="{{'global.args' | translate}}">
+  <div class="p-grid ui-fluid">
+    <div class="p-col-12 p-md-6">
 
 
-<app-campaign-view [selectedCampaign]="selectedCampaign"></app-campaign-view>
+      <div class="p-grid align-center">
+        <label class="p-col-12 p-md-3 p-grid">{{'campaign.name' | translate}}</label>
+        <div class="p-col-12 p-md-9 p-grid">
+          <span class="p-col">
+            <input type="text" pInputText [(ngModel)]="args.name" name="ArgumentsName">
+          </span>
+        </div>
+      </div>
+
+      <div class="p-grid align-center">
+        <label class="p-col-12 p-md-3 p-grid">{{'campaign.dateArgs' | translate}}</label>
+        <div class="p-col-12 p-md-9 p-grid">
+            <app-toitsu-calendar class="p-col" [(ngModel)]="args.startDateAfter" ></app-toitsu-calendar>
+            -
+            <app-toitsu-calendar class="p-col" [(ngModel)]="args.startDateBefore"></app-toitsu-calendar>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+</p-panel>
+
+
+<p-panel header="{{'global.list' | translate}}">
+  <div class="p-grid ui-fluid">
+    <div class="p-col-12 p-md-6">
+      <app-toitsu-table
+        [url]="url"
+        [args]="args"
+        [loadOnInit]="true"
+        [cols]="cols"
+        [viewLink]="viewLink"
+        (loadComplete)="loadComplete($event)"
+        (loadError)="loadError($event)"
+        (rowClicked)="rowclicked($event)"
+      ></app-toitsu-table>
+    </div>
+  </div>
+</p-panel>
+
+<p-toast position="top-right"></p-toast>
+
+
+
+
 

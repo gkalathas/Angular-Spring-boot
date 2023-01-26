@@ -1,0 +1,11 @@
+{
+
+  "global.list" : "Ευρετήριο",
+  "campaign.dateArgs" : "Ημερομηνίες",
+  "op.campaign.list" : "Καμπάνιες",
+  "op.list" : "Ευρετήριο",
+  "op.view" : "Προσθήκη Καμπάνιας",
+  "op.view.edit" : "Επεξεργασία Προφίλ",
+  "campaign.campaignType.id" : "Τυπος Καμπανιας"
+
+}

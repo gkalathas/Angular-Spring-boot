@@ -1,60 +1,211 @@
 
 
-d<form (ngSubmit)="onSubmit()" #f=ngForm>
-  <div class="field" ngModelGroup="group">
-      <span class="p-float-label form-group" style="margin: 20px">
-        <input type="text" class="form-control" pInputText ngModel name="campaign.id"  style="width: 50rem" required>
+<form (ngSubmit)="onSubmit()" #f=ngForm>
+  <div class="field">
+      <span class="p-float-label" style="margin: 20px">
+        <input type="text"  pInputText [(ngModel)]="campaign.id" name="id" style="width: 50rem" required>
         <label>{{'campaign.ID' | translate}}</label>
       </span>
-    <span class="p-float-label form-group" style="margin: 20px">
-        <input type="text" class="form-control" pInputText ngModel name="campaign.name"  style="width: 50rem" required>
+    <span class="p-float-label " style="margin: 20px">
+        <input type="text" pInputText [(ngModel)]="campaign.name" name="name" style="width: 50rem" required>
         <label >{{'campaign.name' | translate}}</label>
       </span>
-    <span class="p-float-label form-group" style="margin: 20px">
-        <input type="text" class="form-control" pInputText   style="width: 50rem" required>
-        <label>{{'campaignTypeKind' | translate}}</label>
+    <span class="p-float-label" style="margin: 20px">
+        <input type="text"  pInputText [(ngModel)]="campaign.isRunning" name="status"  style="width: 50rem" required>
+        <label>{{'campaignStatus' | translate}}</label>
       </span>
-    <span class="p-float-label form-group" style="margin: 20px">
-        <input type="text" class="form-control" pInputText ngModel name="campaign.cost" style="width: 50rem" required>
+    <span class="p-float-label " style="margin: 20px">
+        <input type="text" pInputText [(ngModel)]="campaign.cost" name="cost" style="width: 50rem" required>
         <label>{{'campaign.cost' | translate}}</label>
       </span>
-    <div class="inline-block form-group" style="float:left ">
+    <div class="inline-block" style="float:left ">
       <span class="p-float-label" style="margin: 20px">
-        <textarea rows="5" cols="30" class="form-control" ngModel name="campaign.comments"
-                  style="width: 30rem"  pInputTextarea autoResize="autoResize" required></textarea>
-        <label>{{'campaignTypeDescription' | translate}}</label>
+        <input type="text" style="width: 30rem" [(ngModel)]="campaign.campaignTypeId" pInputText name="campaignTypeId" required>
+        <label>{{'campaignTypeId' | translate}}</label>
         </span>
         <br>
         <span class="p-float-label" style="margin: 20px">
-          <textarea rows="5" cols="30" class="form-control" ngModel name="campaign.campaignType.description"
+          <textarea rows="5" cols="30" [(ngModel)]="campaign.comments" name="comments"
                   style="width: 30rem"  pInputTextarea autoResize="autoResize" required></textarea>
-          <label>{{'campaignTypeDescription' | translate}}</label>
+          <label>{{'campaignTypeComments' | translate}}</label>
         </span>
     </div>
 
     <div class="xl:inline-block" >
-      <div class="field col-12 md:col-4 fwdorm-group" style=" float: right">
+      <div class="field col-12 md:col-4" style=" float: right">
         <label >{{'startDate' | translate}}</label>
-        <p-calendar [showIcon]="true" inputId="startDate" class="form-control" ngModel name="startDate"  required></p-calendar>
+        <p-calendar [showIcon]="true" inputId="startDate"  required></p-calendar>
       </div>
-      <div class="field col-12 form-group md:col-4" style="float: right">
+      <div class="field col-12 md:col-4" style="float: right">
         <label>{{'endDate' | translate}}</label>
-        <p-calendar [showIcon]="true" class="form-control" inputId="endDate" ngModel name="endDate" formControlName="endDate"  required></p-calendar>
+        <p-calendar [showIcon]="true" inputId="endDate"  required></p-calendar>
+      </div>
+      <div class="p-grid align-center">
+        <label class="p-col-12 p-p-md-3 p-grid">{{'campaign.campaignType.id' | translate}}</label>
+        <div class="p-col-12 p-md-9 p-grid">
+        <span class="p-col">
+          <p-dropdown formControlName="campaignTypeId" [options]="campaignTypes"
+                      placeholder="{{'global.selectOption' | translate}}" [showClear]="true"
+                      [filter]="true" (onChange)="campaignTypeIdChange($event)"></p-dropdown>
+        </span>
+        </div>
+      </div>
+    </div>
+    <div class="p-grid align-center">
+      <label class="p-col-12 p-p-md-3 p-grid">{{'campaign.cost' | translate}}</label>
+      <div class="p-col-12 p-md-9 p-grid">
+          <span class="p-col">
+           <input type="text" pInputText inputmode="decimals" [(ngModel)]="campaign.cost" name="cost">
+          </span>
       </div>
     </div>
   </div>
 
   <footer class="flex-row">
     <div class="field lg:col-12 padding-top: top-100" style=" float: left">
-      <button pRipple type="submit" label="{{'Save' | translate}}" pButton icon="fa fa-plus"
+      <button pRipple type="submit" class="p-button-primary"
+              *ngIf="viewType==='add'; else edit" label="{{'Save' | translate}}"
+              (click)="saveCampaign()" pButton icon="fa fa-plus"
               iconPos="left" style="margin:1rem"
               [disabled]="!f.valid"></button>
-      <button pButton pRipple type="button" label="{{'Save' | translate}}" class="p-button-success"
-              (click)="onAddCampaign()" style="margin:1rem"></button>
-      <button pButton pRipple type="button" label="{{'Cancel' | translate}}" class="p-button-danger"
+      <button pButton pRipple type="button" label="{{'global.delete' | translate}}" class="p-button-danger"
+              (click)="deleteCampaign()" style="margin:1rem"></button>
+      <button pButton pRipple type="button" label="{{'Cancel' | translate}}" class="p-button-warning"
               style="margin:1rem"></button>
+      <button  pButton type="button" icon="fa fa-home" iconPos="left" label="{{'Home' | translate}}" (click)="homePage()"
+               class="p-button-success" style="margin: 1rem"></button>
+      <ng-template #edit>
+          <button type="button" label="{{'global.edit' | translate}}" [disabled]="f.invalid" (click)="onUpdateProduct()"
+                  pButton icon="fa fa-plus" iconPos="left" style="margin: 1rem"></button>
+      </ng-template>
     </div>
   </footer>
 </form>
 
 
+
+<!--<form *ngIf="campaignForm" [formGroup]="campaignForm">-->
+
+<!--  <button pButton type="button" class="ui-button-success"-->
+<!--  icon="fa fa-save" label="{{'global.save' | translate}}" iconPos="left"-->
+<!--          (click)="saveCampaign()" [disabled]="!campaignForm.valid">-->
+<!--  </button>-->
+
+<!--  <button pButton type="button" *ngIf="id" class="ui-button-danger"-->
+<!--          icon="fa fa-trash" label="{{'global.delete' | translate}}" iconPos="left"-->
+<!--          (click)="deleteCampaign()">-->
+<!--  </button>-->
+<!--  <button pButton type="button" class="ui-button-primary"-->
+<!--          icon="fa fa-magic" label="{{'global.delete' | translate}}" iconPos="left"-->
+<!--          (click)="setCampaignValue()">-->
+<!--  </button>-->
+
+<!--  <div class="p-grid">-->
+<!--    <div class="p-col-12 p-md-6">-->
+<!--      <p-panel header="CampaignData">-->
+<!--        <div class="ui-fluid">-->
+
+<!--          <div class="p-grid pi-align-center">-->
+<!--            <label class="p-col-12 p-p-md-3 p-grid">{{'campaign.id' | translate}}</label>-->
+<!--            <div class="p-col-12 p-md-9 p-grid">-->
+<!--              <span class="p-col">-->
+<!--                <input type="text" pInputText formControlName="campaign.id">-->
+<!--              </span>-->
+<!--            </div>-->
+<!--          </div>-->
+
+<!--          <div class="p-grid pi-align-center">-->
+<!--            <label class="p-col-12 p-p-md-3 p-grid">{{'campaign.name' | translate}}</label>-->
+<!--            <div class="p-col-12 p-md-9 p-grid">-->
+<!--              <span class="p-col">-->
+<!--                <input type="text" pInputText formControlName="campaign.name">-->
+<!--              </span>-->
+<!--            </div>-->
+<!--          </div>-->
+
+<!--          <div class="p-grid pi-align-center">-->
+<!--            <label class="p-col-12 p-p-md-3 p-grid">{{'campaign.campaignType.id' | translate}}</label>-->
+<!--            <div class="p-col-12 p-md-9 p-grid">-->
+<!--              <span class="p-col">-->
+<!--                <input type="text" pInputText formControlName="campaign.campaignType.id">-->
+<!--              </span>-->
+<!--            </div>-->
+<!--          </div>-->
+
+<!--          <div class="p-grid pi-align-center">-->
+<!--            <label class="p-col-12 p-p-md-3 p-grid">{{'campaign.campaignType.description' | translate}}</label>-->
+<!--            <div class="p-col-12 p-md-9 p-grid">-->
+<!--              <span class="p-col">-->
+<!--                <input type="text" pInputText formControlName="campaign.campaignType.description">-->
+<!--              </span>-->
+<!--            </div>-->
+<!--          </div>-->
+
+<!--          <div class="p-grid pi-align-center">-->
+<!--            <label class="p-col-12 p-p-md-3 p-grid">{{'campaign.campaignType.id' | translate}}</label>-->
+<!--            <div class="p-col-12 p-md-9 p-grid">-->
+<!--              <span class="p-col">-->
+<!--                <p-dropdown formControlName="campaignTypeId" [options]="campaignTypes"-->
+<!--                            placeholder="{{'global.selectOption' | translate}}" [showClear]="true"-->
+<!--                            [filter]="true" (onChange)="campaignTypeIdChange($event)"></p-dropdown>-->
+<!--              </span>-->
+<!--            </div>-->
+<!--          </div>-->
+
+<!--          <div class="p-grid pi-align-center">-->
+<!--            <label class="p-col-12 p-p-md-3 p-grid">{{'campaign.startDate' | translate}}</label>-->
+<!--            <div class="p-col-12 p-md-9 p-grid">-->
+<!--              <span class="p-col">-->
+<!--               <app-toitsu-calendar class="p-col" controlName="campaign.startDate" [showTime]="true"></app-toitsu-calendar>-->
+<!--              </span>-->
+<!--            </div>-->
+<!--          </div>-->
+
+<!--          <div class="p-grid pi-align-center">-->
+<!--            <label class="p-col-12 p-p-md-3 p-grid">{{'campaign.endDate' | translate}}</label>-->
+<!--            <div class="p-col-12 p-md-9 p-grid">-->
+<!--              <span class="p-col">-->
+<!--               <app-toitsu-calendar class="p-col" controlName="campaign.endDate" [showTime]="true"></app-toitsu-calendar>-->
+<!--              </span>-->
+<!--            </div>-->
+<!--          </div>-->
+
+<!--          <div class="p-grid pi-align-center">-->
+<!--            <label class="p-col-12 p-p-md-3 p-grid">{{'campaign.cost' | translate}}</label>-->
+<!--            <div class="p-col-12 p-md-9 p-grid">-->
+<!--              <span class="p-col">-->
+<!--               <input type="text" pInputText inputmode="decimals" formControlName="campaign.cost">-->
+<!--              </span>-->
+<!--            </div>-->
+<!--          </div>-->
+
+
+<!--          <div class="p-grid pi-align-center">-->
+<!--            <label class="p-col-12 p-p-md-3 p-grid">{{'campaign.isRunnning' | translate}}</label>-->
+<!--            <div class="p-col-12 p-md-9 p-grid">-->
+<!--              <span class="p-col" *ngFor="let status of statuses" >-->
+<!--               <p-radioButton name="isRunning" formControlName="campaign.isRunning" value="{{status.value}}"-->
+<!--                              label="{{status}}" (onClick)="statusChange()"></p-radioButton>-->
+<!--              </span>-->
+<!--            </div>-->
+<!--          </div>-->
+
+
+<!--          <div class="p-grid pi-align-center">-->
+<!--            <label class="p-col-12 p-p-md-3 p-grid">{{'campaign.comments' | translate}}</label>-->
+<!--            <div class="p-col-12 p-md-9 p-grid">-->
+<!--              <span class="p-col" *ngFor="let status of statuses" >-->
+<!--                <textarea pInputTextarea formControlName="campaign.comments" rows="8"></textarea>-->
+<!--              </span>-->
+<!--            </div>-->
+<!--          </div>-->
+
+
+<!--        </div>-->
+<!--      </p-panel>-->
+<!--    </div>-->
+<!--  </div>-->
+
+
+
+<!--</form>-->

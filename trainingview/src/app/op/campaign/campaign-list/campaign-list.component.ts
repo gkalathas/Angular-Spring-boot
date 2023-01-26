@@ -7,6 +7,7 @@ import {Subscription} from 'rxjs';
 import {Campaign} from '../../campaign';
 import {CampaignService} from '../../campaign.service';
 import {CampaignTypeService} from '../../campaign-type.service';
+import {campaignConsts} from '../../campaign.consts';
 
 @Component({
   selector: 'app-campaign-list',
@@ -17,10 +18,6 @@ export class CampaignListComponent implements OnInit {
 
   selectedCampaign: Campaign;
 
-  subscriptions: Subscription[] = [];
-
-  subscription: Subscription;
-
   displayAddModal: boolean = false;
 
   id: number;
@@ -28,17 +25,15 @@ export class CampaignListComponent implements OnInit {
   constructor(private translateService: TranslateService,
               private dialogService: DialogService,
               private activatedRoute: ActivatedRoute,
-              private router: Router,
-              private campaignService: CampaignService,
-              private campaignTypeService: CampaignTypeService) { }
+              private router: Router) { }
 
   @ViewChild(ToitsuTableComponent) table;
 
 
-  url = '/trn/campaigns/index';
+  url = campaignConsts.indexUrl;
   args = this.initializeArgs();
 
-  viewLink = '/trn/campaign/view/:id';
+  viewLink = campaignConsts.viewLinkUrl;
 
   cols = [
     {
@@ -63,9 +58,23 @@ export class CampaignListComponent implements OnInit {
       align: 'center'
     },
     {
-      field: 'campaignTypeId',
-      header: this.translateService.instant('campaignTypeId'),
-      sortField: 'campaignTypeId',
+      field: 'campaignTypeDescription',
+      header: this.translateService.instant('campaignTypeDescription'),
+      sortField: 'campaignTypeDescription',
+      width: 20,
+      align: 'center'
+    },
+    {
+      field: 'campaignTypeKind',
+      header: this.translateService.instant('campaignTypeKind'),
+      sortField: 'campaignTypeKind',
+      width: 20,
+      align: 'center'
+    },
+    {
+      field: 'campaignTypeKindLabel',
+      header: this.translateService.instant('campaignTypeKindLabel'),
+      sortField: 'campaignTypeKindLabel',
       width: 20,
       align: 'center'
     },
@@ -73,13 +82,6 @@ export class CampaignListComponent implements OnInit {
       field: 'cost',
       header: this.translateService.instant('cost'),
       sortField: 'cost',
-      width: 20,
-      align: 'center'
-    },
-    {
-      field: 'isRunning',
-      header: this.translateService.instant('isRunning'),
-      sortField: 'isRunning',
       width: 20,
       align: 'center'
     },
@@ -94,13 +96,6 @@ export class CampaignListComponent implements OnInit {
       field: 'endDate',
       header: this.translateService.instant('endDate'),
       sortField: 'endDate',
-      width: 20,
-      align: 'center'
-    },
-    {
-      field: 'comments',
-      header: this.translateService.instant('comments'),
-      sortField: 'comments',
       width: 20,
       align: 'center'
     },
@@ -164,6 +159,6 @@ export class CampaignListComponent implements OnInit {
 
 
   onAddCampaign() {
-
+    this.router.navigate(['/op/campaign/view']);
   }
 }

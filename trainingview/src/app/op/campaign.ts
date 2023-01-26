@@ -3,9 +3,9 @@ import {CampaignType} from './campaign-type';
 export class Campaign {
   id: number;
   name: string;
-  campaignTypeId: CampaignType;
+  campaignTypeId: number;
   cost: number;
-  isRunning: boolean = null;
+  isRunning: boolean;
   startDate: Date;
   endDate: Date;
   comments: string;

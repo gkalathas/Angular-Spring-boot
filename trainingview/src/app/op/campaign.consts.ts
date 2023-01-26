@@ -1,6 +1,10 @@
 
-export const campaignConsts = [
+export const campaignConsts =
   {
-    getById: '/trn/campaign/view/:id'
+    indexUrl: '/trn/campaigns/index',
+    viewLinkUrl: '/op/campaign/view',
+    getById: '/trn/campaigns/get',
+    saveUrl: '/trn/campaigns/save',
+    deleteUrl: '/trn/campaigns/delete'
   }
-];
+;

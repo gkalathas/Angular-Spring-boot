@@ -6,6 +6,7 @@ export function toitsuTranslateLoader(http: HttpClient) {
     {prefix: './assets/messages/global-', suffix: '.json'},
     {prefix: './assets/messages/menu-', suffix: '.json'},
     {prefix: './assets/messages/sa/my-user-', suffix: '.json'},
-    {prefix: './assets/messages/cm/product-', suffix: '.json'}
+    {prefix: './assets/messages/cm/product-', suffix: '.json'},
+    {prefix: './assets/messages/op/campaign-', suffix: '.json'},
   ]);
 }
