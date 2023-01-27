@@ -13,7 +13,7 @@
           <label class="p-col-12 p-md-3 p-grid">{{'campaignStatus' | translate}}</label>
           <div class="p-col-12 p-md-9 p-grid">
             <p-checkbox  [binary]="true" [(ngModel)]="campaign.isRunning" pInputText name="isRunning" inputId="binary"></p-checkbox>
-            <input type="text" id="input" style="width: 20rem" value="{{campaign.isRunning}}" pInputText name="isRunning">
+            <input type="text" id="input" style="width: 20rem" value="{{campaign.isRunning ? 'Active' : 'Inactive' | translate}}" pInputText name="isRunning">
           </div>
         </div>
         <hr>

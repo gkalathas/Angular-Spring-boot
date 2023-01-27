@@ -12,5 +12,7 @@
   "campaignTypeKindLabel" : "Ειδος Καμπανιας",
   "cost" : "Κοστος",
   "startDate": "Ημερομηνια εκκινησης",
-  "endDate": "Ημερομηνια Ληξης"
+  "endDate": "Ημερομηνια Ληξης",
+  "Active" : "Ενεργή",
+  "Inactive" : "Ανενεργή"
 }

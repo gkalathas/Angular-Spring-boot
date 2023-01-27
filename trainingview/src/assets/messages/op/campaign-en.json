@@ -9,5 +9,10 @@
   "campaignTypeComments": "Comments",
   "campaignStatus": "Campaign Status",
   "campaignTypeKindLabel" : "Campaign Kind",
-  "cost" : "Cost"
+  "cost" : "Cost",
+  "startDate": "Start Date",
+  "endDate": "End Date",
+  "Active" : "Active",
+  "Inactive" : "Inactive"
 }
+

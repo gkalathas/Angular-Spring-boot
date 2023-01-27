@@ -43,7 +43,6 @@
       </div>
   </div>
 
-
   </div>
   <div class="flex justify-content-center" style="margin-top: 5px">
     <button pButton type="submit" label="{{'global.search' | translate}}" style="margin-right: 5px" class="p-button-success" icon="fa fa-search"
@@ -51,7 +50,6 @@
     <button pButton type="button" label="{{'global.clearArgs' | translate}}" class="p-button-warning" icon="fa fa-times"
             iconPos="left" (click)="clearArgs()"></button>
   </div>
-
 </p-panel>
 
 
@@ -66,7 +64,6 @@
         [loadOnInit]="true"
         [cols]="cols"
         [viewLink]="viewLink"
-
         (loadComplete)="loadComplete($event)"
         (loadError)="loadError($event)"
         (rowClicked)="rowclicked($event)"
