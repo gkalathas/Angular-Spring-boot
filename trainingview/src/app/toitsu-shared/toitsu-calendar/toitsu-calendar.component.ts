@@ -13,11 +13,14 @@ import {ControlContainer} from '@angular/forms';
   ]
 })
 export class ToitsuCalendarComponent implements OnInit, AfterViewInit {
-  
+
+
   @Input() controlName: string;
   @Input() model: Date;
   @Output() modelChange = new EventEmitter<Date>();
-  
+
+  @Input() name: string;
+
   @Input() showTime = false;
   @Input() noIcon = false;
   @Input() inputId: string;
