@@ -7,5 +7,7 @@
   "op.view": "New Campaign",
   "op.view.edit": "Edit Profile",
   "campaignTypeComments": "Comments",
-  "campaignStatus": "Campaign Status"
+  "campaignStatus": "Campaign Status",
+  "campaignTypeKindLabel" : "Campaign Kind",
+  "cost" : "Cost"
 }

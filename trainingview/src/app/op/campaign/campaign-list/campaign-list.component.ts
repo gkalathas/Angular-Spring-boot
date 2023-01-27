@@ -24,7 +24,7 @@ export class CampaignListComponent implements OnInit {
               private activatedRoute: ActivatedRoute,
               private router: Router) { }
 
-  @ViewChild(ToitsuTableComponent) table;
+  @ViewChild('table') table: ToitsuTableComponent;
 
 
   url = campaignConsts.indexUrl;
@@ -35,21 +35,21 @@ export class CampaignListComponent implements OnInit {
   cols = [
     {
       field: 'extraActions',
-      header: this.translateService.instant('extraActions'),
+      header: this.translateService.instant('global.extraActions'),
       sortField: '',
       width: 20,
       align: 'center'
     },
     {
       field: 'id',
-      header: this.translateService.instant('id'),
+      header: this.translateService.instant('Id'),
       sortField: 'id',
       width: 20,
       align: 'center'
     },
     {
       field: 'name',
-      header: this.translateService.instant('name'),
+      header: this.translateService.instant('campaign.name'),
       sortField: 'name',
       width: 20,
       align: 'center'
@@ -101,8 +101,8 @@ export class CampaignListComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  loadTableData() {
-    this.table.loadTableDate();
+  loadTableData(event: any) {
+    this.table.loadTableData(event);
   }
 
   loadComplete(responseData) {

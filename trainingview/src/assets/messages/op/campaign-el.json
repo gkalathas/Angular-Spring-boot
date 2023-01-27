@@ -7,7 +7,10 @@
   "op.view" : "Προσθήκη Καμπάνιας",
   "op.view.edit" : "Επεξεργασία Προφίλ",
   "campaign.campaignType.id" : "Τυπος Καμπανιας",
-  "campaignTypeComments": "Σχολια",
-  "campaignStatus": "Κατασταση Καμπανιας"
-
+  "campaignTypeComments" : "Σχολια",
+  "campaignStatus" : "Κατασταση Καμπανιας",
+  "campaignTypeKindLabel" : "Ειδος Καμπανιας",
+  "cost" : "Κοστος",
+  "startDate": "Ημερομηνια εκκινησης",
+  "endDate": "Ημερομηνια Ληξης"
 }

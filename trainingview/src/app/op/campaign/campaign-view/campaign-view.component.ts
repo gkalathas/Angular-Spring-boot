@@ -8,7 +8,7 @@ import {CampaignService} from '../../campaign.service';
 import {CampaignTypeService} from '../../campaignType/campaign-type.service';
 import {ToitsuToasterService} from '../../../toitsu-shared/toitsu-toaster/toitsu-toaster.service';
 import {ToitsuBlockUiService} from '../../../toitsu-shared/toitsu-blockui/toitsu-block-ui.service';
-import {Calendar} from 'primeng/calendar';
+
 
 
 @Component({
@@ -41,7 +41,9 @@ export class CampaignViewComponent implements OnInit {
   ngOnInit(): void {
     this.campaignTypeService.getAll().subscribe(
       responseData => {
-        this.campaignTypes = responseData;
+        if (responseData) {
+          this.campaignTypes = responseData;
+        }
       }
     );
 
@@ -64,10 +66,6 @@ export class CampaignViewComponent implements OnInit {
     this.campaign.id = this.form.value.id;
     // console.log(this.form);
     // console.log(this.campaign.id);
-  }
-
-  onAddCampaign() {
-    this.router.navigate(['']);
   }
 
   saveCampaign() {
@@ -110,11 +108,10 @@ export class CampaignViewComponent implements OnInit {
   }
 
   homePage() {
-    this.router.navigate(['']);
+    this.router.navigate(['/op/campaign/list']);
   }
 
-  onUpdateProduct() {
-
+  clearForm() {
+    this.form.reset();
   }
-
 }

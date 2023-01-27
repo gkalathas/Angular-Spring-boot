@@ -19,8 +19,6 @@
 <p-panel header="{{'global.args' | translate}}">
   <div class="p-grid ui-fluid">
     <div class="p-col-12 p-md-6">
-
-
       <div class="p-grid align-center">
         <label class="p-col-12 p-md-3 p-grid">{{'campaign.name' | translate}}</label>
         <div class="p-col-12 p-md-9 p-grid">
@@ -29,17 +27,29 @@
           </span>
         </div>
       </div>
-
-      <div class="p-grid align-center">
-        <label class="p-col-12 p-md-3 p-grid">{{'campaign.dateArgs' | translate}}</label>
-        <div class="p-col-12 p-md-9 p-grid">
-            <app-toitsu-calendar class="p-col" [(model)]="args.startDateAfter" ngDefaultControl></app-toitsu-calendar>
-            -
-            <app-toitsu-calendar class="p-col" [(model)]="args.startDateBefore" ngDefaultControl></app-toitsu-calendar>
+      <hr style="width: 13rem">
+      <div class="flex justify-content-end">
+        <div class="flex-row">
+          <label class="p-col-12 p-md-3">{{'campaign.dateArgs' | translate}}</label>
+          <hr>
+          <label class="p-col-12 p-md-3 p-grid">{{'startDate' | translate}}</label>
+          <br>
+          <app-toitsu-calendar  [(model)]="args.startDateAfter" ngDefaultControl></app-toitsu-calendar>
+          <hr>
+          <label class="p-col-12 p-md-3 p-grid">{{'endDate' | translate}}</label>
+          <br>
+          <app-toitsu-calendar  [(model)]="args.startDateBefore" ngDefaultControl></app-toitsu-calendar>
         </div>
       </div>
+  </div>
 
-    </div>
+
+  </div>
+  <div class="flex justify-content-center" style="margin-top: 5px">
+    <button pButton type="submit" label="{{'global.search' | translate}}" style="margin-right: 5px" class="p-button-success" icon="fa fa-search"
+            iconPos="left" (click)="loadTableData($event)"></button>
+    <button pButton type="button" label="{{'global.clearArgs' | translate}}" class="p-button-warning" icon="fa fa-times"
+            iconPos="left" (click)="clearArgs()"></button>
   </div>
 
 </p-panel>
@@ -49,11 +59,14 @@
   <div class="p-grid ui-fluid">
     <div class="p-col-12 p-md-6">
       <app-toitsu-table
+        scrollHeight="550px"
+        #table
         [url]="url"
         [args]="args"
         [loadOnInit]="true"
         [cols]="cols"
         [viewLink]="viewLink"
+
         (loadComplete)="loadComplete($event)"
         (loadError)="loadError($event)"
         (rowClicked)="rowclicked($event)"
