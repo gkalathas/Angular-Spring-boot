@@ -5,15 +5,13 @@
 
 <div class="card">
   <form (ngSubmit)="onSubmit()" #f=ngForm >
-    <div class="p-grid" style="height: 30rem">
-        <span class="p-float-label" style="margin: 20px">
-          <input type="text"  pInputText [(ngModel)]="campaign.id" name="id" style="width: 50rem" required>
-          <label>{{'campaign.ID' | translate}}</label>
-        </span>
-      <span class="p-float-label " style="margin: 20px">
-          <input type="text" pInputText [(ngModel)]="campaign.name" name="name" style="width: 50rem" required>
-          <label >{{'campaign.name' | translate}}</label>
-        </span>
+    <div class="card" style="height: 35rem">
+      <span class="p-float-label " style="float: left">
+        <input type="text" pInputText [(ngModel)]="campaign.name" name="name" style="width: 50rem">
+        <label >{{'campaign.name' | translate}}</label>
+      </span>
+      <br>
+      <br>
       <br>
       <div class="inline-block" style="float: left">
         <div class="p-grid align-center">
@@ -23,43 +21,38 @@
             <input type="text" id="input" style="width: 20rem" value="{{campaign.isRunning}}" pInputText name="isRunning">
           </div>
         </div>
-
-
+        <hr>
         <br>
-        <span class="p-float-label" style="margin: 20px">
+        <span class="p-float-label" style="width: 25rem">
           <textarea rows="5" cols="30" [(ngModel)]="campaign.comments" name="comments"
-                  style="float: left"  pInputTextarea autoResize="autoResize" required></textarea>
+                  style="float: left"  pInputTextarea autoResize="autoResize"></textarea>
           <label>{{'campaignTypeComments' | translate}}</label>
         </span>
       </div>
-      <br><br><br>
-      <div class="xl:inline-block" >
-        <br>
-        <div class="field col-12 md:col-4" style="float: right">
-          <label>{{'endDate' | translate}}</label>
-<!--          <p-calendar [showIcon]="true" inputId="endDate" [(ngModel)]="campaign.endDate" name="endDate"  required></p-calendar>-->
-          <app-toitsu-calendar inputId="startDate" [(model)]="campaign.endDate"></app-toitsu-calendar>
-        </div>
-        <div class="field col-12 md:col-4" style=" float: right">
-          <label >{{'startDate' | translate}}</label>
-<!--          <p-calendar [showIcon]="true" inputId="startDate" [(ngModel)]="campaign.startDate" name="startDate"  required></p-calendar>-->
-          <app-toitsu-calendar inputId="startDate" [(model)]="campaign.startDate" ngDefaultControl></app-toitsu-calendar>
-        </div>
+
+      <div class="inline-block" style="float: right">
         <div class="p-grid align-center">
-          <label class="p-col-12 p-p-md-3 p-grid">{{'campaign.campaignType.id' | translate}}</label>
+          <label class="p-col-12 p-md-3 p-grid">{{'startDate' | translate}}</label>
           <div class="p-col-12 p-md-9 p-grid">
-          <span class="field col-12 md:col-4">
-            <p-dropdown [options]="campaignTypes"
-                        placeholder="{{'global.selectOption' | translate}}" [showClear]="true"
-                        [filter]="true" [(ngModel)]="campaign.campaignTypeId" name="campaignTypeId"></p-dropdown>
-          </span>
+            <app-toitsu-calendar  [(model)]="campaign.startDate" name="startDate"></app-toitsu-calendar>
+          </div>
+        </div>
+        <hr>
+        <br><br><br><br><br><br><br><br><br>
+        <div class="p-grid align-center">
+          <label class="p-col-12 p-md-3 p-grid">{{'endDate' | translate}}</label>
+          <div class="p-col-12 p-md-9 p-grid">
+            <app-toitsu-calendar  [(model)]="campaign.endDate" name="endDate"></app-toitsu-calendar>
           </div>
         </div>
       </div>
-      <div class="p-grid align-center">
-        <label class="p-col-12 p-p-md-3 p-grid">{{'campaign.cost' | translate}}</label>
-        <div class="p-col-12 p-md-9 p-grid">
-            <span class="p-col">
+
+      <div class="inline-block" style="margin: 5rem">
+        <div class="p-grid align-center">
+          <div class="p-col-12 p-md-3 p-grid">
+            <label class="col-12 p-md-3">{{'campaign.cost' | translate}}</label>
+            <div class="col-12 p-md-9">
+              <span class="p-col">
              <p-inputNumber  [showButtons]="true" id="price"  buttonLayout="horizontal" inputId="horizontal"
                              spinnerMode="horizontal" [step]="100"
                              decrementButtonClass="p-button-danger" incrementButtonClass="p-button-success"
@@ -67,8 +60,21 @@
                              currency="EUR" [(ngModel)]="campaign.cost" name="cost">
              </p-inputNumber>
             </span>
+            </div>
+          </div>
+        </div>
+        <hr><br><br><br><br><br>
+        <label class="col-12 p-md-3">{{'campaign.campaignType.id' | translate}}</label>
+        <div class="col-12 p-md-9">
+          <span class="p-col" style="width: 15rem">
+            <p-dropdown [options]="campaignTypes"
+                        placeholder="{{'global.selectOption' | translate}}" [showClear]="true"
+                        [filter]="true" [(ngModel)]="campaign.campaignTypeId" name="campaignTypeId"></p-dropdown>
+          </span>
+          <hr>
         </div>
       </div>
+
     </div>
 
     <footer class="flex-row">
@@ -78,8 +84,7 @@
                 (click)="saveCampaign()" pButton icon="fa fa-plus"
                 iconPos="left" style="margin:1rem"
                 [disabled]="!f.valid"></button>
-        <button pButton pRipple type="button" label="{{'global.delete' | translate}}" class="p-button-danger"
-                (click)="deleteCampaign()" style="margin:1rem"></button>
+
         <button pButton pRipple type="button" label="{{'Cancel' | translate}}" class="p-button-warning"
                 style="margin:1rem"></button>
         <button  pButton type="button" icon="fa fa-home" iconPos="left" label="{{'Home' | translate}}" (click)="homePage()"
@@ -87,6 +92,8 @@
         <ng-template #edit>
             <button type="button" label="{{'global.edit' | translate}}" [disabled]="f.invalid" (click)="saveCampaign()"
                     pButton icon="fa fa-plus" iconPos="left" style="margin: 1rem"></button>
+          <button pButton pRipple type="button" label="{{'global.delete' | translate}}" class="p-button-danger"
+                  (click)="deleteCampaign()" style="margin:1rem"></button>
         </ng-template>
       </div>
     </footer>

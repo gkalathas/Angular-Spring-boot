@@ -73,7 +73,6 @@ export class CampaignViewComponent implements OnInit {
   saveCampaign() {
     this.toitsuToasterService.clearMessages();
     this.toitsuBlockUiService.blockUi();
-
     console.log(this.campaign);
     this.campaignService.saveCampaign(this.campaign).subscribe(
       response => {
