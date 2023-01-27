@@ -36,7 +36,7 @@ export class AddEditProductComponent implements OnInit, OnChanges, OnDestroy {
 
     if (this.selectedProduct) {
       this.modalType = 'Edit';
-      this.id = this.route.snapshot.params['id'];
+      this.id = +this.route.snapshot.params['id'];
       this.productForm.patchValue(this.selectedProduct);
 
     } else {

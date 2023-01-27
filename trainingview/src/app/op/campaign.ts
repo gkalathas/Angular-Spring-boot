@@ -1,4 +1,3 @@
-import {CampaignType} from './campaign-type';
 
 export class Campaign {
   id: number;

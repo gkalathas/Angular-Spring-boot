@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import {HttpClient} from '@angular/common/http';
-import {environment} from '../../environments/environment';
+import {environment} from '../../../environments/environment';
 import {campaignTypeConsts} from './campaignType.consts';
-import {ToitsuSharedService} from '../toitsu-shared/toitsu-shared.service';
+import {ToitsuSharedService} from '../../toitsu-shared/toitsu-shared.service';
 import {map} from 'rxjs/operators';
 
 @Injectable({
@@ -29,8 +29,5 @@ export class CampaignTypeService {
           });
         })
     );
-  }
-  getall() {
-    return this.http.get (this.apiUrl + campaignTypeConsts.getAll);
   }
 }

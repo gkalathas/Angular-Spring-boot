@@ -4,6 +4,7 @@ import {environment} from '../../environments/environment';
 import {Campaign} from './campaign';
 import {ToitsuSharedService} from '../toitsu-shared/toitsu-shared.service';
 import {campaignConsts} from './campaign.consts';
+import {Observable} from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -19,8 +20,8 @@ export class CampaignService {
       {params: this.toitsouSharedService.initHttpParams({id})});
   }
 
-  saveCampaign(campaign: Campaign) {
-    return this.httpClient.post(this.apiUrl + campaignConsts.saveUrl, campaign);
+  saveCampaign(campaign: Campaign): Observable<Campaign> {
+    return this.httpClient.post<Campaign>(this.apiUrl + campaignConsts.saveUrl, campaign);
   }
 
   deleteCampaign(id: number) {

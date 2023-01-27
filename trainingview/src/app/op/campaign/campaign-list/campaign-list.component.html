@@ -25,7 +25,7 @@
         <label class="p-col-12 p-md-3 p-grid">{{'campaign.name' | translate}}</label>
         <div class="p-col-12 p-md-9 p-grid">
           <span class="p-col">
-            <input type="text" pInputText [(ngModel)]="args.name" name="ArgumentsName">
+            <input type="text" pInputText [(ngModel)]="args.name" name="name">
           </span>
         </div>
       </div>
@@ -33,9 +33,9 @@
       <div class="p-grid align-center">
         <label class="p-col-12 p-md-3 p-grid">{{'campaign.dateArgs' | translate}}</label>
         <div class="p-col-12 p-md-9 p-grid">
-            <app-toitsu-calendar class="p-col" [(ngModel)]="args.startDateAfter" ></app-toitsu-calendar>
+            <app-toitsu-calendar class="p-col" [(ngModel)]="args.startDateAfter" ngDefaultControl></app-toitsu-calendar>
             -
-            <app-toitsu-calendar class="p-col" [(ngModel)]="args.startDateBefore"></app-toitsu-calendar>
+            <app-toitsu-calendar class="p-col" [(ngModel)]="args.startDateBefore" ngDefaultControl></app-toitsu-calendar>
         </div>
       </div>
 

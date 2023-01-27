@@ -5,12 +5,11 @@ import {NgForm} from '@angular/forms';
 import {Campaign} from '../../campaign';
 import {TranslateService} from '@ngx-translate/core';
 import {CampaignService} from '../../campaign.service';
-import {CampaignTypeService} from '../../campaign-type.service';
+import {CampaignTypeService} from '../../campaignType/campaign-type.service';
 import {ToitsuToasterService} from '../../../toitsu-shared/toitsu-toaster/toitsu-toaster.service';
 import {ToitsuBlockUiService} from '../../../toitsu-shared/toitsu-blockui/toitsu-block-ui.service';
 import {Calendar} from 'primeng/calendar';
-import {campaignConsts} from '../../campaign.consts';
-import {CampaignType} from "../../campaign-type";
+
 
 @Component({
   selector: 'app-campaign-view',
@@ -20,24 +19,10 @@ import {CampaignType} from "../../campaign-type";
 export class CampaignViewComponent implements OnInit {
 
   @Input()selectedCampaign: Campaign;
-
   @ViewChild('f') form: NgForm;
   campaign: Campaign = new Campaign();
-  campaign1: any;
-
   retrievedId: number;
-
-  selectType: any;
-  campaignTypes: Array<SelectItem>;
-  // campaignTypes: any =  this.campaignTypeService.getAll().subscribe(
-  //   response => {
-  //
-  //   }
-  // );
-  statuses: Array<SelectItem>;
-  
-  @ViewChild(Calendar) startDate; 
-
+  campaignTypes: any = [];
   viewType: string;
 
 
@@ -54,6 +39,12 @@ export class CampaignViewComponent implements OnInit {
 
 
   ngOnInit(): void {
+    this.campaignTypeService.getAll().subscribe(
+      responseData => {
+        this.campaignTypes = responseData;
+      }
+    );
+
     this.retrievedId = +this.route.snapshot.params['id'];
 
     if (!this.retrievedId) {
@@ -62,7 +53,8 @@ export class CampaignViewComponent implements OnInit {
     }
     else{
       this.viewType = 'edit';
-      this.campaign1 = this.route.snapshot.data;
+      this.campaign = this.route.snapshot.data['record'];
+      console.log(this.campaign);
 
     }
   }
@@ -86,7 +78,7 @@ export class CampaignViewComponent implements OnInit {
     this.campaignService.saveCampaign(this.campaign).subscribe(
       response => {
         this.toitsuToasterService.showSuccessStay();
-        this.router.navigate(['/op/campaign/view', response['id']]);
+        this.router.navigate(['/op/campaign/list']);
       },
       responseError => {
         this.toitsuToasterService.apiValidationErrors(responseError);
@@ -102,7 +94,7 @@ export class CampaignViewComponent implements OnInit {
       accept: () => {
         this.toitsuToasterService.clearMessages();
         this.toitsuBlockUiService.blockUi();
-        console.log(this.retrievedId + 'inside delete');
+        // console.log(this.retrievedId + 'inside delete');
         this.campaignService.deleteCampaign(this.retrievedId).subscribe(
           response => {
             this.toitsuToasterService.showSuccessStay(this.translateService.instant('global.delete.success'));
@@ -126,13 +118,4 @@ export class CampaignViewComponent implements OnInit {
 
   }
 
-  dropType: string = '';
-  campaignTypeIdChange($event: any) {
-
-  }
-  getSelectedCampaign() {
-    this.campaignTypeService.getall().subscribe(
-      campaignT => this.selectType = campaignT
-    );
-  }
 }

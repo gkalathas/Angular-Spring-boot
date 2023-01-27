@@ -5,5 +5,7 @@
   "op.campaign.list": "Campaigns",
   "op.list": "Campaign List",
   "op.view": "New Campaign",
-  "op.view.edit": "Edit Profile"
+  "op.view.edit": "Edit Profile",
+  "campaignTypeComments": "Comments",
+  "campaignStatus": "Campaign Status"
 }

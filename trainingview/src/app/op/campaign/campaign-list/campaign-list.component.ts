@@ -3,10 +3,7 @@ import {ToitsuTableComponent} from '../../../toitsu-shared/toitsu-table/toitsu-t
 import {TranslateService} from '@ngx-translate/core';
 import {DialogService} from 'primeng/dynamicdialog';
 import {ActivatedRoute, Router} from '@angular/router';
-import {Subscription} from 'rxjs';
 import {Campaign} from '../../campaign';
-import {CampaignService} from '../../campaign.service';
-import {CampaignTypeService} from '../../campaign-type.service';
 import {campaignConsts} from '../../campaign.consts';
 
 @Component({

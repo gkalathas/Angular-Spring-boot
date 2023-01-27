@@ -6,6 +6,8 @@
   "op.list" : "Ευρετήριο",
   "op.view" : "Προσθήκη Καμπάνιας",
   "op.view.edit" : "Επεξεργασία Προφίλ",
-  "campaign.campaignType.id" : "Τυπος Καμπανιας"
+  "campaign.campaignType.id" : "Τυπος Καμπανιας",
+  "campaignTypeComments": "Σχολια",
+  "campaignStatus": "Κατασταση Καμπανιας"
 
 }
