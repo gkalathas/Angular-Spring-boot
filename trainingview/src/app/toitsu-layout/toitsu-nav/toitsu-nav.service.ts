@@ -57,12 +57,12 @@ export class ToitsuNavService {
         }]},
 
 
-      {label: this.translate.instant('op.campaign.list'), icon: 'fa fa-bolt',
+      {label: this.translate.instant('op.campaign.list'), icon: 'fa fa-university',
         items: [{
-          label: this.translate.instant('op.list'), icon: 'fa fa-bolt', routerLink: ['/op/campaign/list'],
+          label: this.translate.instant('op.list'), icon: 'fa fa-university', routerLink: ['/op/campaign/list'],
           needPermission: false
         }, {
-          label: this.translate.instant('op.view'), icon: 'fa fa-bolt', routerLink: ['/op/campaign/view'],
+          label: this.translate.instant('op.view'), icon: 'fa fa-university', routerLink: ['/op/campaign/view'],
           needPermission: false
         }]}
     ];
