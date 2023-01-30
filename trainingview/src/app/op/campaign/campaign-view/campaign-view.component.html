@@ -8,213 +8,82 @@
         <label >{{'campaign.name' | translate}}</label>
       </span>
       <br><br><br>
-      <div class="inline-block" style="float: left">
-        <div class="p-grid align-center">
-          <label class="p-col-12 p-md-3 p-grid">{{'campaignStatus' | translate}}</label>
-          <div class="p-col-12 p-md-9 p-grid">
-            <p-checkbox  [binary]="true" [(ngModel)]="campaign.isRunning" pInputText name="isRunning" inputId="binary"></p-checkbox>
-            <input type="text" id="input" style="width: 20rem" value="{{campaign.isRunning ? 'Active' : 'Inactive' | translate}}" pInputText name="isRunning">
+      <div class="form-group">
+        <div class="field">
+          <label for="input" class="block">{{'campaignStatus' | translate}}</label>
+          <p-checkbox  [binary]="true" [(ngModel)]="campaign.isRunning" pInputText name="isRunning" inputId="binary"></p-checkbox>
+          <input type="text" id="input" style="width: 20rem" value="{{campaign.isRunning ? 'Active' : 'Inactive' | translate}}"
+                 pInputText name="isRunning">
+        </div>
+      </div>
+
+      <div class="flex inline-flex justify-content-center">
+        <div class="form-group">
+          <div class="field">
+            <label for="price" class="block">{{'campaign.cost' | translate}}</label>
+            <p-inputNumber  [showButtons]="true" id="price"  buttonLayout="horizontal" inputId="horizontal"
+                            spinnerMode="horizontal" [step]="100"
+                            decrementButtonClass="p-button-danger" incrementButtonClass="p-button-success"
+                            incrementButtonIcon="pi pi-plus" decrementButtonIcon="pi pi-minus" mode="currency"
+                            currency="EUR" [(ngModel)]="campaign.cost" name="cost">
+            </p-inputNumber>
           </div>
         </div>
-        <hr>
-        <br>
-        <span class="p-float-label" style="width: 25rem">
-          <textarea rows="5" cols="50" [(ngModel)]="campaign.comments" name="comments"
-                  style="float: left"  pInputTextarea autoResize="autoResize"></textarea>
-          <label>{{'campaignTypeComments' | translate}}</label>
+
+        <div class="form-group" style="margin-left: 10rem">
+          <div class="field">
+            <label for="type" class="block">{{'campaign.campaignType.id' | translate}}</label>
+            <p-dropdown id="type" [options]="campaignTypes"
+                        placeholder="{{'global.selectOption' | translate}}" [showClear]="true"
+                        [filter]="true" [(ngModel)]="campaign.campaignTypeId" name="campaignTypeId"></p-dropdown>
+
+          </div>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <span class="p-float-label">
+          <textarea id="comment" rows="5" cols="50" [(ngModel)]="campaign.comments" name="comments"
+                    style="float: left"  pInputTextarea autoResize="autoResize"></textarea>
+          <label for="comment">{{'campaignTypeComments' | translate}}</label>
         </span>
       </div>
 
-      <div class="inline-block" style="float: right">
-          <label class="p-col-12 p-md-3">{{'startDate' | translate}}</label>
-          <div class="p-col-12 p-md-9">
-            <app-toitsu-calendar  [(model)]="campaign.startDate" name="startDate"></app-toitsu-calendar>
-          </div>
-        <hr>
-        <br><br><br><br><br><br><br><br><br>
-          <label class="p-col-12 p-md-3">{{'endDate' | translate}}</label>
-          <div class="p-col-12 p-md-9">
-            <app-toitsu-calendar  [(model)]="campaign.endDate" name="endDate"></app-toitsu-calendar>
-          </div>
-      </div>
+      <div class="form-group" style="margin-left: 50rem">
+        <div class="field">
+          <label for="start" class="block">{{'startDate' | translate}}</label>
+          <app-toitsu-calendar id="start"  [(model)]="campaign.startDate" name="startDate"></app-toitsu-calendar>
+          <hr>
 
-      <div class="inline-block" style="margin: 5rem">
-        <div class="p-grid align-center">
-          <div class="p-col-12 p-md-3 p-grid">
-            <label class="col-12 p-md-3">{{'campaign.cost' | translate}}</label>
-            <div class="col-12 p-md-9">
-              <span class="p-col">
-             <p-inputNumber  [showButtons]="true" id="price"  buttonLayout="horizontal" inputId="horizontal"
-                             spinnerMode="horizontal" [step]="100"
-                             decrementButtonClass="p-button-danger" incrementButtonClass="p-button-success"
-                             incrementButtonIcon="pi pi-plus" decrementButtonIcon="pi pi-minus" mode="currency"
-                             currency="EUR" [(ngModel)]="campaign.cost" name="cost">
-             </p-inputNumber>
-            </span>
+          <div class="form-group">
+            <div class="field">
+              <label for="end"  class="block">{{'endDate' | translate}}</label>
+              <app-toitsu-calendar id="end"  [(model)]="campaign.endDate" name="endDate"></app-toitsu-calendar>
             </div>
           </div>
         </div>
-        <hr><br><br><br><br><br>
-        <label class="col-12 p-md-3">{{'campaign.campaignType.id' | translate}}</label>
-        <div class="col-12 p-md-9">
-          <span class="p-col" style="width: 15rem">
-            <p-dropdown [options]="campaignTypes"
-                        placeholder="{{'global.selectOption' | translate}}" [showClear]="true"
-                        [filter]="true" [(ngModel)]="campaign.campaignTypeId" name="campaignTypeId"></p-dropdown>
-          </span>
-          <hr>
-        </div>
       </div>
-
     </div>
 
-    <footer class="flex-row">
-      <div class="field lg:col-12 padding-top: top-100" style=" float: left">
-        <button pRipple type="submit" class="p-button-primary"
-                *ngIf="viewType==='add'; else edit" label="{{'Save' | translate}}"
-                (click)="saveCampaign()" pButton icon="fa fa-plus"
-                iconPos="left" style="margin:1rem"
-                [disabled]="!f.valid"></button>
 
-        <button pButton pRipple type="button" *ngIf="viewType==='add'" label="{{'Cancel' | translate}}" (click)="clearForm()" class="p-button-warning"
-                style="margin:1rem"></button>
-        <button  pButton type="button" icon="fa fa-home" iconPos="left" label="{{'global.list' | translate}}" (click)="homePage()"
-                 class="p-button-success" style="margin: 1rem"></button>
-        <ng-template #edit>
-            <button type="button" label="{{'global.edit' | translate}}" [disabled]="f.invalid" (click)="saveCampaign()"
-                    pButton icon="fa fa-plus" iconPos="left" style="margin: 1rem"></button>
-          <button pButton pRipple type="button" label="{{'global.delete' | translate}}" class="p-button-danger"
-                  (click)="deleteCampaign()" style="margin:1rem"></button>
+    <footer class="flex justify-content-center">
+      <button pRipple type="submit" class="p-button-primary"
+              *ngIf="viewType==='add'; else edit" label="{{'Save' | translate}}"
+              (click)="saveCampaign()" pButton icon="fa fa-plus"
+              iconPos="left" style="margin:1rem"
+              [disabled]="!f.valid"></button>
 
-        </ng-template>
-      </div>
+      <button pButton pRipple type="button" *ngIf="viewType==='add'" label="{{'Cancel' | translate}}" (click)="clearForm()" class="p-button-warning"
+              style="margin:1rem"></button>
+      <button  pButton type="button" icon="fa fa-home" iconPos="left" label="{{'global.list' | translate}}" (click)="homePage()"
+               class="p-button-success" style="margin: 1rem"></button>
+      <ng-template #edit>
+        <button type="button" label="{{'global.edit' | translate}}" [disabled]="f.invalid" (click)="saveCampaign()"
+                pButton icon="fa fa-plus" iconPos="left" style="margin: 1rem"></button>
+        <button pButton pRipple type="button" label="{{'global.delete' | translate}}" class="p-button-danger"
+                (click)="deleteCampaign()" style="margin:1rem"></button>
+
+      </ng-template>
     </footer>
   </form>
 </div>
-
-
-<!--<form *ngIf="campaignForm" [formGroup]="campaignForm">-->
-
-<!--  <button pButton type="button" class="ui-button-success"-->
-<!--  icon="fa fa-save" label="{{'global.save' | translate}}" iconPos="left"-->
-<!--          (click)="saveCampaign()" [disabled]="!campaignForm.valid">-->
-<!--  </button>-->
-
-<!--  <button pButton type="button" *ngIf="id" class="ui-button-danger"-->
-<!--          icon="fa fa-trash" label="{{'global.delete' | translate}}" iconPos="left"-->
-<!--          (click)="deleteCampaign()">-->
-<!--  </button>-->
-<!--  <button pButton type="button" class="ui-button-primary"-->
-<!--          icon="fa fa-magic" label="{{'global.delete' | translate}}" iconPos="left"-->
-<!--          (click)="setCampaignValue()">-->
-<!--  </button>-->
-
-<!--  <div class="p-grid">-->
-<!--    <div class="p-col-12 p-md-6">-->
-<!--      <p-panel header="CampaignData">-->
-<!--        <div class="ui-fluid">-->
-
-<!--          <div class="p-grid pi-align-center">-->
-<!--            <label class="p-col-12 p-p-md-3 p-grid">{{'campaign.id' | translate}}</label>-->
-<!--            <div class="p-col-12 p-md-9 p-grid">-->
-<!--              <span class="p-col">-->
-<!--                <input type="text" pInputText formControlName="campaign.id">-->
-<!--              </span>-->
-<!--            </div>-->
-<!--          </div>-->
-
-<!--          <div class="p-grid pi-align-center">-->
-<!--            <label class="p-col-12 p-p-md-3 p-grid">{{'campaign.name' | translate}}</label>-->
-<!--            <div class="p-col-12 p-md-9 p-grid">-->
-<!--              <span class="p-col">-->
-<!--                <input type="text" pInputText formControlName="campaign.name">-->
-<!--              </span>-->
-<!--            </div>-->
-<!--          </div>-->
-
-<!--          <div class="p-grid pi-align-center">-->
-<!--            <label class="p-col-12 p-p-md-3 p-grid">{{'campaign.campaignType.id' | translate}}</label>-->
-<!--            <div class="p-col-12 p-md-9 p-grid">-->
-<!--              <span class="p-col">-->
-<!--                <input type="text" pInputText formControlName="campaign.campaignType.id">-->
-<!--              </span>-->
-<!--            </div>-->
-<!--          </div>-->
-
-<!--          <div class="p-grid pi-align-center">-->
-<!--            <label class="p-col-12 p-p-md-3 p-grid">{{'campaign.campaignType.description' | translate}}</label>-->
-<!--            <div class="p-col-12 p-md-9 p-grid">-->
-<!--              <span class="p-col">-->
-<!--                <input type="text" pInputText formControlName="campaign.campaignType.description">-->
-<!--              </span>-->
-<!--            </div>-->
-<!--          </div>-->
-
-<!--          <div class="p-grid pi-align-center">-->
-<!--            <label class="p-col-12 p-p-md-3 p-grid">{{'campaign.campaignType.id' | translate}}</label>-->
-<!--            <div class="p-col-12 p-md-9 p-grid">-->
-<!--              <span class="p-col">-->
-<!--                <p-dropdown formControlName="campaignTypeId" [options]="campaignTypes"-->
-<!--                            placeholder="{{'global.selectOption' | translate}}" [showClear]="true"-->
-<!--                            [filter]="true" (onChange)="campaignTypeIdChange($event)"></p-dropdown>-->
-<!--              </span>-->
-<!--            </div>-->
-<!--          </div>-->
-
-<!--          <div class="p-grid pi-align-center">-->
-<!--            <label class="p-col-12 p-p-md-3 p-grid">{{'campaign.startDate' | translate}}</label>-->
-<!--            <div class="p-col-12 p-md-9 p-grid">-->
-<!--              <span class="p-col">-->
-<!--               <app-toitsu-calendar class="p-col" controlName="campaign.startDate" [showTime]="true"></app-toitsu-calendar>-->
-<!--              </span>-->
-<!--            </div>-->
-<!--          </div>-->
-
-<!--          <div class="p-grid pi-align-center">-->
-<!--            <label class="p-col-12 p-p-md-3 p-grid">{{'campaign.endDate' | translate}}</label>-->
-<!--            <div class="p-col-12 p-md-9 p-grid">-->
-<!--              <span class="p-col">-->
-<!--               <app-toitsu-calendar class="p-col" controlName="campaign.endDate" [showTime]="true"></app-toitsu-calendar>-->
-<!--              </span>-->
-<!--            </div>-->
-<!--          </div>-->
-
-<!--          <div class="p-grid pi-align-center">-->
-<!--            <label class="p-col-12 p-p-md-3 p-grid">{{'campaign.cost' | translate}}</label>-->
-<!--            <div class="p-col-12 p-md-9 p-grid">-->
-<!--              <span class="p-col">-->
-<!--               <input type="text" pInputText inputmode="decimals" formControlName="campaign.cost">-->
-<!--              </span>-->
-<!--            </div>-->
-<!--          </div>-->
-
-
-<!--          <div class="p-grid pi-align-center">-->
-<!--            <label class="p-col-12 p-p-md-3 p-grid">{{'campaign.isRunnning' | translate}}</label>-->
-<!--            <div class="p-col-12 p-md-9 p-grid">-->
-<!--              <span class="p-col" *ngFor="let status of statuses" >-->
-<!--               <p-radioButton name="isRunning" formControlName="campaign.isRunning" value="{{status.value}}"-->
-<!--                              label="{{status}}" (onClick)="statusChange()"></p-radioButton>-->
-<!--              </span>-->
-<!--            </div>-->
-<!--          </div>-->
-
-
-<!--          <div class="p-grid pi-align-center">-->
-<!--            <label class="p-col-12 p-p-md-3 p-grid">{{'campaign.comments' | translate}}</label>-->
-<!--            <div class="p-col-12 p-md-9 p-grid">-->
-<!--              <span class="p-col" *ngFor="let status of statuses" >-->
-<!--                <textarea pInputTextarea formControlName="campaign.comments" rows="8"></textarea>-->
-<!--              </span>-->
-<!--            </div>-->
-<!--          </div>-->
-
-
-<!--        </div>-->
-<!--      </p-panel>-->
-<!--    </div>-->
-<!--  </div>-->
-
-
-
-<!--</form>-->
