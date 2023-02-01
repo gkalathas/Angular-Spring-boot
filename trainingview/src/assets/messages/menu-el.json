@@ -1,5 +1,6 @@
 {
-  "sa.myUser": "Χρήστες",
+  "sa.myUser": "Χρήστης",
+  "sa.users": "Χρήστες",
   "sa.myUser.new": "Νέος Χρήστης",
   "sa.myUser.edit": "Επεξεργασία Χρήστη"
 }

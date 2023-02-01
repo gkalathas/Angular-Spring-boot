@@ -1,25 +1,18 @@
 import {Routes} from '@angular/router';
 
-import {UserListComponent} from './user-list/user-list.component';
-import {AddUserComponent} from './add-user/add-user.component';
+import {MyUserTestComponent} from './my-user/my-user-test.component';
+import {ArticleComponent} from './article/article.component';
 
 export const saRoutes: Routes = [
-  {path: '', children: [
     {
-      path: 'myuser', children: [
-          {path: 'test', component: UserListComponent, data: {title: 'sa.myUser', breadcrumbs: [
-                {label: 'sa.myUser', routerLink: ['/sa/myuser/test']}], permissions: []}
-          }]
-      },
-      {
-        path: 'userlist', children: [
-          {path: 'show-list', component: UserListComponent, data: {title: 'sa.userlist', breadcrumbs: [
-                {label: 'sa.userlist', routerLink: ['show-list']}], permissions: []}
-          }]
-      }]
-  },
+      path: 'article', children: [
+          {path: 'test', component: MyUserTestComponent, data: {title: 'sa.myUser', breadcrumbs: [
+                {label: 'sa.myUser', routerLink: ['/sa/article/test']}], permissions: []}
+          },
+          {path: 'list', component: ArticleComponent, data: {title: 'sa.articlelist', breadcrumbs: [
+                {label: 'sa.articlelist', routerLink: ['/sa/article/list']}], permissions: []}
+          },
+      ]},
 
-
-  {path: 'show-list', component: UserListComponent},
-  {path: 'show-add-userForm', component: AddUserComponent}
 ];
+

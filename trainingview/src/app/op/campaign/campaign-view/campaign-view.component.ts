@@ -8,7 +8,8 @@ import {CampaignService} from '../../campaign.service';
 import {CampaignTypeService} from '../../campaignType/campaign-type.service';
 import {ToitsuToasterService} from '../../../toitsu-shared/toitsu-toaster/toitsu-toaster.service';
 import {ToitsuBlockUiService} from '../../../toitsu-shared/toitsu-blockui/toitsu-block-ui.service';
-
+import {ExitConfirmation} from '../../../toitsu-shared/exit-confirmation.guard';
+import { Observable } from 'rxjs';
 
 
 @Component({
@@ -16,9 +17,9 @@ import {ToitsuBlockUiService} from '../../../toitsu-shared/toitsu-blockui/toitsu
   templateUrl: './campaign-view.component.html',
   styleUrls: ['./campaign-view.component.scss']
 })
-export class CampaignViewComponent implements OnInit {
+export class CampaignViewComponent implements OnInit, ExitConfirmation {
 
-  @Input()selectedCampaign: Campaign;
+  @Input() selectedCampaign: Campaign;
   @ViewChild('f') form: NgForm;
   campaign: Campaign = new Campaign();
   retrievedId: number;
@@ -34,12 +35,15 @@ export class CampaignViewComponent implements OnInit {
               private campaignService: CampaignService,
               private campaignTypeService: CampaignTypeService,
               private toitsuToasterService: ToitsuToasterService,
-              private toitsuBlockUiService: ToitsuBlockUiService) { }
+              private toitsuBlockUiService: ToitsuBlockUiService) {
+  }
 
-
+  confirmExit(): boolean | Observable<boolean> {
+    return this.form.dirty;
+  }
 
   ngOnInit(): void {
-    this.campaignTypeService.getAll().subscribe(
+    this.campaignTypeService.getAll2().subscribe(
       responseData => {
         if (responseData) {
           this.campaignTypes = responseData;
@@ -75,7 +79,13 @@ export class CampaignViewComponent implements OnInit {
     this.campaignService.saveCampaign(this.campaign).subscribe(
       response => {
         this.toitsuToasterService.showSuccessStay();
-        this.router.navigate(['/op/campaign/list']);
+        this.form.form.markAsPristine();
+        if (!this.retrievedId) {
+          this.router.navigate(['/op/campaign/view', response.id]);
+        }
+        else {
+          this.campaign = response;
+        }
       },
       responseError => {
         this.toitsuToasterService.apiValidationErrors(responseError);
@@ -95,6 +105,7 @@ export class CampaignViewComponent implements OnInit {
         this.campaignService.deleteCampaign(this.retrievedId).subscribe(
           response => {
             this.toitsuToasterService.showSuccessStay(this.translateService.instant('global.delete.success'));
+            this.form.form.markAsPristine();
             this.router.navigate(['/op/campaign/list']);
           },
           responseError => {

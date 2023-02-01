@@ -11,7 +11,7 @@
       <div class="form-group">
         <div class="field">
           <label for="input" class="block">{{'campaignStatus' | translate}}</label>
-          <p-checkbox  [binary]="true" [(ngModel)]="campaign.isRunning" pInputText name="isRunning" inputId="binary"></p-checkbox>
+          <p-checkbox  [binary]="true" [(ngModel)]="campaign.isRunning" name="isRunning" inputId="binary"></p-checkbox>
           <input type="text" id="input" style="width: 20rem" value="{{campaign.isRunning ? 'Active' : 'Inactive' | translate}}"
                  pInputText name="isRunning">
         </div>
@@ -24,7 +24,7 @@
             <p-inputNumber  [showButtons]="true" id="price"  buttonLayout="horizontal" inputId="horizontal"
                             spinnerMode="horizontal" [step]="100"
                             decrementButtonClass="p-button-danger" incrementButtonClass="p-button-success"
-                            incrementButtonIcon="pi pi-plus" decrementButtonIcon="pi pi-minus" mode="currency"
+                            incrementButtonIcon="pi pi-plus" decrementButtonIcon="pi pi-minus" mode="currency" locale="de-DE"
                             currency="EUR" [(ngModel)]="campaign.cost" name="cost">
             </p-inputNumber>
           </div>
@@ -33,7 +33,7 @@
         <div class="form-group" style="margin-left: 10rem">
           <div class="field">
             <label for="type" class="block">{{'campaign.campaignType.id' | translate}}</label>
-            <p-dropdown id="type" [options]="campaignTypes"
+            <p-dropdown id="type" [options]="campaignTypes" optionLabel="description" optionValue="id"
                         placeholder="{{'global.selectOption' | translate}}" [showClear]="true"
                         [filter]="true" [(ngModel)]="campaign.campaignTypeId" name="campaignTypeId"></p-dropdown>
 

@@ -156,10 +156,10 @@ export class CampaignListComponent implements OnInit {
 
   rowclicked(rowData) {
     // this.viewModal(rowData);
-    console.log(rowData);
+    // console.log(rowData);
     console.log(rowData.id);
-    if (this.selectedCampaign) {
-    }
+    // if (this.selectedCampaign) {
+    // }
 
   }
 

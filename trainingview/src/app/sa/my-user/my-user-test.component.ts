@@ -1,31 +1,27 @@
 import {Component, OnInit} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {Router} from '@angular/router';
+import {Article} from '../article/article';
 
 @Component({
   templateUrl: './my-user-test.component.html'
 })
 export class MyUserTestComponent implements OnInit {
+  myArticle: Article;
   
-  testUser = {
-    lastName: 'Test',
-    firstName: 'User'
-  };
+
   
   constructor(private http: HttpClient, private router: Router) {}
   
   ngOnInit() {
   }
 
-  // users() {
-  //   this.router.navigate(['/sa/myuser/test']);
-  // }
-  //
-  // addUser() {
-  //   this.router.navigate(['show-add-userForm']);
-  // }
-  //
-  // user() {
-  //   this.router.navigate(['/sa/myuser/test']);
-  // }
+  addArticle(newtitle: HTMLInputElement, newlink: HTMLInputElement) {
+    let title = newtitle.value;
+    let link = newlink.value;
+    this.myArticle = new Article(0, title, link);
+    console.log(newlink.value);
+    console.log(newtitle.value);
+
+  }
 }

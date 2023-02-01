@@ -13,11 +13,12 @@ export class CampaignService {
 
   apiUrl = environment.apiBaseUrl;
   constructor(private httpClient: HttpClient,
-              private toitsouSharedService: ToitsuSharedService) { }
+              private toitsuSharedService: ToitsuSharedService) { }
 
   getCampaignById(id: number) {
+    let mySecId = 999;
     return this.httpClient.get(this.apiUrl + campaignConsts.getById,
-      {params: this.toitsouSharedService.initHttpParams({id})});
+      {params: this.toitsuSharedService.initHttpParams({id, testId: mySecId})});
   }
 
   saveCampaign(campaign: Campaign): Observable<Campaign> {
@@ -26,7 +27,7 @@ export class CampaignService {
 
   deleteCampaign(id: number) {
     return this.httpClient.delete(this.apiUrl + campaignConsts.deleteUrl, {
-      params: this.toitsouSharedService.initHttpParams({id})});
+      params: this.toitsuSharedService.initHttpParams({id})});
   }
 
 }

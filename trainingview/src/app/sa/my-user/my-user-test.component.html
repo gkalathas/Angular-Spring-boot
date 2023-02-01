@@ -1,23 +1,51 @@
-<div class="grid">
+<div class="grid justify-content-center">
   <div class="col-12 xl:col-6 p-fluid">
-    <p-panel header="{{'myUser.test.someData' | translate}}">
+    <p-panel header="{{'add.link' | translate}}">
       
       <div class="grid align-items-center">
-        <label class="col-12 sm:col-4">{{'myUser.lastName' | translate}}</label>
+        <label for="title" class="col-12 sm:col-4">{{'title' | translate}}</label>
         <div class="col-12 sm:col-8">
-          <input type="text" pInputText value="{{testUser.lastName}}" readonly>
+          <input id="title" type="text" name="{{'title' | translate}}" pInputText #newlink>
         </div>
       </div>
       
       <div class="grid align-items-center">
-        <label class="col-12 sm:col-4">{{'myUser.firstName' | translate}}</label>
+        <label for="link"  class="col-12 sm:col-4">{{'link'| translate}}</label>
         <div class="col-12 sm:col-8">
-          <input type="text" pInputText value="{{testUser.firstName}}" readonly>
+          <input id="link" type="text" name="{{'link'| translate}}" pInputText #newtitle>
         </div>
       </div>
     </p-panel>
   </div>
 </div>
+<div class="grid justify-content-center">
+  <div class="col-12 xl:col-6 p-fluid">
+    <p-toolbar >
+      <div class="fc-button-group">
+        <button pRipple type="submit" class="p-button-primary" pButton
+                icon="fa fa-plus" iconPos="left" label="{{'add.link' | translate}}" (click)="addArticle(newtitle, newlink)"
+                style="width: 15rem"></button>
+
+
+      </div>
+    </p-toolbar>
+
+  </div>
+</div>
+
+
+<p-panel header="{{'global.list' | translate}}">
+  <div class="grid ui-fluid">
+    <div class="col-12 p-md-6">
+      <app-article [article]="myArticle">
+
+      </app-article>
+    </div>
+  </div>
+</p-panel>
+
+
+
 
 <!--<div class="container">-->
 <!--  <div style="text-align: left ">-->

@@ -31,12 +31,15 @@ export class ToitsuNavService {
   
   initializeModel() {
     this.model = [
-      {
-        label: this.translate.instant('sa.myUser'), icon: 'fa fa-users', routerLink: ['/sa/myuser/test'],
+      {label: this.translate.instant('sa.users'), icon: 'fa fa-users', 
+      items: [{
+        label: this.translate.instant('sa.myUser'), icon: 'fa fa-user', routerLink: ['/sa/article/test'],
         needPermission: false
-      },
-
-
+      }, {
+        label: this.translate.instant('sa.articles'), icon: 'fa fa-diamond', routerLink: ['sa/article/list'],
+        needPermission: false
+      }]},
+      
       {label: this.translate.instant('gp.campaigns'), icon: 'fa fa-bomb',
       items: [{
         label: this.translate.instant('showAll'), icon: 'fa fa-bomb', routerLink: ['/gp/campaigns/showAll'],

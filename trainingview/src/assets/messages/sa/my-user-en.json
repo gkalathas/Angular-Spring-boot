@@ -4,6 +4,12 @@
   "myUser.test.someData": "Data",
 
 
+  "add.link" : "Add Link",
+  "title" : "Title",
+  "link" : "Link",
+  "sa.articles" : "Articles",
+  "sa.articlelist" : "All Articles",
+
   "gp.campaigns": "Campaigns",
   "gp.addCampaign": "New Campaign",
   "showAll": "Campaigns",

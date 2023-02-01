@@ -6,6 +6,7 @@ import {ToitsuSharedModule} from '../toitsu-shared/toitsu-shared.module';
 import {MyUserTestComponent} from './my-user/my-user-test.component';
 import { UserListComponent } from './user-list/user-list.component';
 import { AddUserComponent } from './add-user/add-user.component';
+import { ArticleComponent } from './article/article.component';
 
 
 
@@ -13,7 +14,8 @@ import { AddUserComponent } from './add-user/add-user.component';
   declarations: [
     MyUserTestComponent,
     UserListComponent,
-    AddUserComponent
+    AddUserComponent,
+    ArticleComponent
   ],
   exports: [
     UserListComponent

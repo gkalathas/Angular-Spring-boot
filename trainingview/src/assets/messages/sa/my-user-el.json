@@ -3,6 +3,11 @@
   "myUser.firstName": "Όνομα",
   "myUser.test.someData": "Στοιχεία",
 
+  "add.link" : "Πρόσθεσε Λίνκ",
+  "title" : "Τίτλος",
+  "link" : "Λίνκ",
+  "sa.articles" : "Αρθρα",
+  "sa.articlelist" : "Ολα τα Αρθρα",
 
   "gp.campaigns": "Καμπάνιες",
   "campaigns": "Καμπάνιες",
