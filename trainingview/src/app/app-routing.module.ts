@@ -11,6 +11,7 @@ export const appRoutes: Routes = [
   {path: 'gp', loadChildren: () => import('./gp/gp.module').then(m => m.GpModule)},
   {path: 'cd', loadChildren: () => import('./cd/cd.module').then(m => m.CdModule)},
   {path: 'op', loadChildren: () => import('./op/op.module').then(m => m.OpModule)},
+  {path: 'rd', loadChildren: () => import('./rd/rd.module').then(m => m.RdModule)},
   {path: '**', redirectTo: ''},
 ];
 

@@ -24,6 +24,9 @@ import {CdModule} from './cd/cd.module';
 import {ReactiveFormsModule} from '@angular/forms';
 import {GpModule} from './gp/gp.module';
 import {OpModule} from './op/op.module';
+import {RdModule} from './rd/rd.module';
+import {NgxWebstorageModule} from 'ngx-webstorage';
+import {TokenInterceptor} from './rd/token-interceptor';
 
 @NgModule({
   declarations: [
@@ -41,6 +44,7 @@ import {OpModule} from './op/op.module';
     BrowserModule,
     BrowserAnimationsModule,
     HttpClientModule,
+    NgxWebstorageModule.forRoot(),
     RouterModule.forRoot(appRoutes),
     TranslateModule.forRoot({
       loader: {
@@ -53,7 +57,8 @@ import {OpModule} from './op/op.module';
     SaModule,
     CdModule,
     GpModule,
-    OpModule
+    OpModule,
+    RdModule
   ],
   providers: [
     {
@@ -65,7 +70,12 @@ import {OpModule} from './op/op.module';
     MessageService,
     ConfirmationService,
     DialogService,
-    JsonPipe
+    JsonPipe,
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: TokenInterceptor,
+      multi: true
+    }
   ],
   exports: [
     ToitsuFooterComponent,

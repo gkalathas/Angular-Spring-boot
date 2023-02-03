@@ -5,6 +5,9 @@
 /* General layout */
 
 
+input.ng-invalid.ng-touched{
+  border: 1px solid red;
+}
 
 .layout-menu, .layout-topbar, .layout-footer, .route-bar {
   font-family: Segoe UI, sans-serif;
