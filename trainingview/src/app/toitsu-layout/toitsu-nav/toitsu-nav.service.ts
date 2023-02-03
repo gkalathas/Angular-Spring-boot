@@ -71,10 +71,7 @@ export class ToitsuNavService {
 
       {label: this.translate.instant('rd.reddit.home'), icon: 'fa fa-reddit-alien',
         items: [{
-          label: this.translate.instant('rd.home'), icon: 'fa fa-reddit-alien', routerLink: ['/rd/reddit/home'],
-          needPermission: false
-        }, {
-          label: this.translate.instant('op.view'), icon: 'fa fa-university', routerLink: ['/op/campaign/view'],
+          label: this.translate.instant('rd.home'), icon: 'fa fa-reddit-alien', routerLink: ['/'],
           needPermission: false
         }]},
     ];

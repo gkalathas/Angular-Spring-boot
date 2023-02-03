@@ -11,12 +11,15 @@ export class HomeComponent implements OnInit {
 
   post: PostModel = new PostModel();
   posts: PostModel[] = [];
-  constructor(private postService: PostService) { }
+  constructor(private postService: PostService) {
 
-  ngOnInit(): void {
     this.postService.getAllPosts().subscribe(post => {
       this.posts = post;
     });
+  }
+
+  ngOnInit(): void {
+
 
   }
 

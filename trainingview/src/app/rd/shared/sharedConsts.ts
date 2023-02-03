@@ -1,4 +1,6 @@
 export const sharedConsts = {
 
-  getAllPostsUrl: '/posts/'
+  getAllPostsUrl: '/posts/',
+
+  getAllSubredditsUrl: '/subreddit'
 };

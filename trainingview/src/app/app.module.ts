@@ -26,7 +26,8 @@ import {GpModule} from './gp/gp.module';
 import {OpModule} from './op/op.module';
 import {RdModule} from './rd/rd.module';
 import {NgxWebstorageModule} from 'ngx-webstorage';
-import {TokenInterceptor} from './rd/token-interceptor';
+import {EditorModule} from '@tinymce/tinymce-angular';
+
 
 @NgModule({
   declarations: [
@@ -44,6 +45,7 @@ import {TokenInterceptor} from './rd/token-interceptor';
     BrowserModule,
     BrowserAnimationsModule,
     HttpClientModule,
+    EditorModule,
     NgxWebstorageModule.forRoot(),
     RouterModule.forRoot(appRoutes),
     TranslateModule.forRoot({
@@ -71,11 +73,6 @@ import {TokenInterceptor} from './rd/token-interceptor';
     ConfirmationService,
     DialogService,
     JsonPipe,
-    {
-      provide: HTTP_INTERCEPTORS,
-      useClass: TokenInterceptor,
-      multi: true
-    }
   ],
   exports: [
     ToitsuFooterComponent,

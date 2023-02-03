@@ -9,6 +9,16 @@ import { HomeComponent } from './home/home.component';
 import { LoginComponent } from './auth/login/login.component';
 import { SignUpComponent } from './auth/sign-up/sign-up.component';
 import { PostComponent } from './shared/post/post.component';
+import {HTTP_INTERCEPTORS} from '@angular/common/http';
+import {TokenInterceptor} from './token-interceptor';
+import { PostTileComponent } from './shared/post-tile/post-tile.component';
+import { SideBarComponent } from './shared/side-bar/side-bar.component';
+import { SubredditSideBarComponent } from './shared/subreddit-side-bar/subreddit-side-bar.component';
+import { VoteButtonComponent } from './shared/vote-button/vote-button.component';
+import { CreateSubredditComponent } from './subreddit/create-subreddit/create-subreddit.component';
+import { CreatePostComponent } from './post/create-post/create-post.component';
+import { ListSubredditsComponent } from './subreddit/list-subreddits/list-subreddits.component';
+import {EditorComponent} from '@tinymce/tinymce-angular';
 
 
 
@@ -18,18 +28,32 @@ import { PostComponent } from './shared/post/post.component';
     HomeComponent,
     LoginComponent,
     SignUpComponent,
-    PostComponent
+    PostComponent,
+    PostTileComponent,
+    SideBarComponent,
+    SubredditSideBarComponent,
+    VoteButtonComponent,
+    CreateSubredditComponent,
+    CreatePostComponent,
+    ListSubredditsComponent
   ],
   exports: [
     HeaderComponent,
-    HomeComponent
+    HomeComponent,
+    ListSubredditsComponent
   ],
-  imports: [
-    RouterModule.forChild(rdRouting),
-    ToitsuSharedModule,
-    ReactiveFormsModule
+    imports: [
+        RouterModule.forChild(rdRouting),
+        ToitsuSharedModule,
+        ReactiveFormsModule,
+        EditorComponent
 
-  ],
+    ],
+  providers: [
+    {provide: HTTP_INTERCEPTORS,
+    useClass: TokenInterceptor,
+    multi: true}
+  ]
 
 })
 export class RdModule {}

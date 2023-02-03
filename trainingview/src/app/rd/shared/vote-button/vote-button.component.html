@@ -1,0 +1,12 @@
+
+
+
+<div class="d-flex flex-column votebox">
+  <div class="p-2">
+    <i (click)="upvotePost()"  class="upvote fa fa-arrow-up" ></i>
+  </div>
+  <div class="p-2 votecount">{{post.voteCount}}</div>
+  <div class="p-2">
+    <i (click)="downvotePost()" class="downvote fa fa-arrow-down" ></i>
+  </div>
+</div>

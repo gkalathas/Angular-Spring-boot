@@ -1,8 +1,9 @@
 
-import {ExitConfirmationGuard} from '../toitsu-shared/exit-confirmation.guard';
 import {HomeComponent} from './home/home.component';
 import {SignUpComponent} from './auth/sign-up/sign-up.component';
 import {LoginComponent} from './auth/login/login.component';
+import {CreateSubredditComponent} from './subreddit/create-subreddit/create-subreddit.component';
+import {CreatePostComponent} from './post/create-post/create-post.component';
 
 export const rdRouting = [
   {path: 'reddit', children: [
@@ -14,6 +15,15 @@ export const rdRouting = [
       },
       {path: 'login', component: LoginComponent, data: {title: 'rd.reddit.login', breadcrumbs: [
             {label: 'rd.login', routerLink: ['/rd/reddit/login']}], permissions: []}
+      },
+      {path: 'create-subreddit', component: CreateSubredditComponent, data: {title: 'rd.reddit.createSubreddit', breadcrumbs: [
+            {label: 'rd.createSubreddit', routerLink: ['/rd/reddit/create-subreddit']}], permissions: []}
+      },
+      {path: 'create-post', component: CreatePostComponent, data: {title: 'rd.reddit.createPost', breadcrumbs: [
+            {label: 'rd.createPost', routerLink: ['/rd/reddit/createPost']}], permissions: []}
+      },
+      {path: 'list-subreddits', component: CreatePostComponent, data: {title: 'rd.reddit.subredditList', breadcrumbs: [
+            {label: 'rd.subredditList', routerLink: ['/rd/reddit/list-subreddits']}], permissions: []}
       }
     ]}
   
