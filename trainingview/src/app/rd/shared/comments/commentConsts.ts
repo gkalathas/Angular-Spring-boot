@@ -4,6 +4,8 @@ export const commentConsts = {
 
   getCommentsByPostUrl: '/comments/by-post/',
 
-  postCommentUrl: '/comments/'
+  postCommentUrl: '/comments/',
+
+  getAllCommentsByUserUrl: '/comments/by-user/'
 
 };

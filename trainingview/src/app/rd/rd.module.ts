@@ -20,6 +20,8 @@ import { CreatePostComponent } from './post/create-post/create-post.component';
 import { ListSubredditsComponent } from './subreddit/list-subreddits/list-subreddits.component';
 import {EditorComponent} from '@tinymce/tinymce-angular';
 import {ViewPostComponent} from './post/view-post/view-post.component';
+import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
+import { UserProfileComponent } from './auth/user-profile/user-profile.component';
 
 
 
@@ -37,20 +39,22 @@ import {ViewPostComponent} from './post/view-post/view-post.component';
     VoteButtonComponent,
     CreateSubredditComponent,
     CreatePostComponent,
-    ListSubredditsComponent
+    ListSubredditsComponent,
+    UserProfileComponent
   ],
   exports: [
     HeaderComponent,
     HomeComponent,
     ListSubredditsComponent
   ],
-    imports: [
-        RouterModule.forChild(rdRouting),
-        ToitsuSharedModule,
-        ReactiveFormsModule,
-        EditorComponent
+  imports: [
+    RouterModule.forChild(rdRouting),
+    ToitsuSharedModule,
+    ReactiveFormsModule,
+    EditorComponent,
+    NgbModule
 
-    ],
+  ],
   providers: [
     {provide: HTTP_INTERCEPTORS,
     useClass: TokenInterceptor,

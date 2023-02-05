@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {SignupRequestPayload} from '../sign-up/signup-request.payload';
-import {Observable, tap} from 'rxjs';
+import {Observable, tap, throwError} from 'rxjs';
 import {environment} from '../../../../environments/environment';
 import {authConsts} from './authConsts';
 import {LocalStorageService} from 'ngx-webstorage';
@@ -14,13 +14,18 @@ import {map} from 'rxjs/operators';
 })
 export class AuthService {
 
+  refreshTokenPayload = {
+    refreshToken: this.getRefreshToken(),
+    username: this.getUserName()
+  };
+
   apiBaseUrl = environment.apiRedditUrl;
 
   constructor(private httpClient: HttpClient,
               private localStorage: LocalStorageService) { }
 
-  signup(signupRequestPayload: SignupRequestPayload): Observable<any> {
-    return this.httpClient.post(this.apiBaseUrl + authConsts.signUpUrl, signupRequestPayload);
+  signup(signupRequestPayload: SignupRequestPayload): Observable<SignupRequestPayload> {
+    return this.httpClient.post<SignupRequestPayload>(  `${this.apiBaseUrl} + ${authConsts.loginUrl}`, signupRequestPayload);
   }
 
 
@@ -64,6 +69,27 @@ export class AuthService {
 
   getExpirationTime() {
     return this.localStorage.retrieve('expiresAt');
+  }
+
+
+
+  logout() {
+    this.httpClient.post(this.apiBaseUrl + authConsts.logoutUrl, this.refreshTokenPayload,
+      { responseType: 'text' })
+      .subscribe(data => {
+        console.log(data);
+      }, error => {
+        throwError(error);
+      });
+    this.localStorage.clear('authenticationToken');
+    this.localStorage.clear('username');
+    this.localStorage.clear('refreshToken');
+    this.localStorage.clear('expiresAt');
+  }
+
+
+  isLoggedIn(): boolean {
+    return this.getJwtToken() != null;
   }
 
 }

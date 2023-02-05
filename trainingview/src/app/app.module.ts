@@ -27,6 +27,7 @@ import {OpModule} from './op/op.module';
 import {RdModule} from './rd/rd.module';
 import {NgxWebstorageModule} from 'ngx-webstorage';
 import {EditorModule} from '@tinymce/tinymce-angular';
+import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 
 
 @NgModule({
@@ -42,6 +43,7 @@ import {EditorModule} from '@tinymce/tinymce-angular';
   ],
   imports: [
     ReactiveFormsModule,
+    NgbModule,
     BrowserModule,
     BrowserAnimationsModule,
     HttpClientModule,

@@ -9,7 +9,7 @@ import {PostService} from '../shared/post/post.service';
 })
 export class HomeComponent implements OnInit {
 
-  post: PostModel = new PostModel();
+  // post: PostModel = new PostModel();
   posts: PostModel[] = [];
   constructor(private postService: PostService) {
 

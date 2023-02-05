@@ -20,4 +20,8 @@ export class CommentService {
   postComment(commentPayload: CommentPayload): Observable<any> {
     return this.http.post<any>(this.apiBaseUrl + commentConsts.postCommentUrl, commentPayload);
   }
+
+  getAllCommentsByUser(name: string) {
+    return this.http.get<CommentPayload[]>(this.apiBaseUrl + commentConsts.getAllCommentsByUserUrl + name);
+  }
 }

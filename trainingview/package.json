@@ -28,6 +28,7 @@
     "@ngx-translate/core": "12.1.2",
     "@tinymce/tinymce-angular": "^7.0.0",
     "bootstrap": "^4.6.2",
+    "@ng-bootstrap/ng-bootstrap": "^6.0.3",
     "chart.js": "3.7.0",
     "file-saver": "2.0.2",
     "font-awesome": "4.7.0",

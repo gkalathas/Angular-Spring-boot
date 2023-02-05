@@ -1,8 +1,10 @@
 export const authConsts = {
   
-  signUpUrl: '/auth/signup',
+  signUpUrl: '/auth/signup/',
 
   loginUrl: '/auth/login',
 
-  refreshTokenUrl: '/auth/refresh/token'
+  refreshTokenUrl: '/auth/refresh/token/',
+
+  logoutUrl: '/auth/logout/'
 };
