@@ -11,7 +11,7 @@ import {SubredditModel} from '../../shared/subreddit-model';
 })
 export class CreateSubredditComponent implements OnInit {
   createSubredditForm: FormGroup;
-  subredditModel: SubredditModel;
+  subredditModel: SubredditModel = new SubredditModel();
   title = new FormControl('');
   description = new FormControl('');
 
@@ -38,6 +38,12 @@ export class CreateSubredditComponent implements OnInit {
   }
 
   createSubreddit() {
-
+    this.subredditModel.name = this.createSubredditForm.get('title').value;
+    this.subredditModel.description = this.createSubredditForm.get('description').value;
+    this.subredditService.createSubreddit(this.subredditModel).subscribe(data => {
+      this.router.navigateByUrl('/rd/reddit/list-subreddits').then(r => console.log(r));
+    }, error => {
+      console.log('Error occurred');
+    });
   }
 }

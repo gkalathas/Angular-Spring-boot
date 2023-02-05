@@ -14,7 +14,7 @@ import {throwError} from 'rxjs';
 })
 export class CreatePostComponent implements OnInit {
   subreddits: SubredditModel[] = [];
-  postPayload: CreatePostPayload;
+  postPayload: CreatePostPayload = new CreatePostPayload();
   createPostForm: FormGroup;
 
   constructor(private router: Router,

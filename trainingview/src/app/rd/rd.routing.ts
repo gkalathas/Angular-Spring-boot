@@ -4,6 +4,8 @@ import {SignUpComponent} from './auth/sign-up/sign-up.component';
 import {LoginComponent} from './auth/login/login.component';
 import {CreateSubredditComponent} from './subreddit/create-subreddit/create-subreddit.component';
 import {CreatePostComponent} from './post/create-post/create-post.component';
+import {ListSubredditsComponent} from './subreddit/list-subreddits/list-subreddits.component';
+import {ViewPostComponent} from './post/view-post/view-post.component';
 
 export const rdRouting = [
   {path: 'reddit', children: [
@@ -22,7 +24,10 @@ export const rdRouting = [
       {path: 'create-post', component: CreatePostComponent, data: {title: 'rd.reddit.createPost', breadcrumbs: [
             {label: 'rd.createPost', routerLink: ['/rd/reddit/createPost']}], permissions: []}
       },
-      {path: 'list-subreddits', component: CreatePostComponent, data: {title: 'rd.reddit.subredditList', breadcrumbs: [
+      {path: 'view-post/:id', component: ViewPostComponent, data: {title: 'rd.reddit.viewPost', breadcrumbs: [
+            {label: 'rd.createPost', routerLink: ['/rd/reddit/view-post/:id']}], permissions: []}
+      },
+      {path: 'list-subreddits', component: ListSubredditsComponent, data: {title: 'rd.reddit.subredditList', breadcrumbs: [
             {label: 'rd.subredditList', routerLink: ['/rd/reddit/list-subreddits']}], permissions: []}
       }
     ]}

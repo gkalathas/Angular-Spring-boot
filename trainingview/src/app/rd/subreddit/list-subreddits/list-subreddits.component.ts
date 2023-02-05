@@ -9,7 +9,7 @@ import {throwError} from 'rxjs';
   styleUrls: ['./list-subreddits.component.scss']
 })
 export class ListSubredditsComponent implements OnInit {
-  subreddits: SubredditModel[];
+  subreddits: SubredditModel[] = [];
 
   constructor(private subredditService: SubredditService) { }
 

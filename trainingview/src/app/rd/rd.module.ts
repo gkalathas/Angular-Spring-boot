@@ -19,11 +19,13 @@ import { CreateSubredditComponent } from './subreddit/create-subreddit/create-su
 import { CreatePostComponent } from './post/create-post/create-post.component';
 import { ListSubredditsComponent } from './subreddit/list-subreddits/list-subreddits.component';
 import {EditorComponent} from '@tinymce/tinymce-angular';
+import {ViewPostComponent} from './post/view-post/view-post.component';
 
 
 
 @NgModule({
   declarations: [
+    ViewPostComponent,
     HeaderComponent,
     HomeComponent,
     LoginComponent,
